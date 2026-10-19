@@ -1,0 +1,7 @@
+{
+  "name": "place-finder",
+  "private": true,
+  "type": "module",
+  "scripts": { "scrape": "node scrape.ts" },
+  "devDependencies": { "@types/node": "^24.0.0" }
+}

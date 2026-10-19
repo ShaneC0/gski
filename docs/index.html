@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Place Finder</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Figtree:wght@400;600;700&display=swap">
+<style>
+:root {
+  --bg: #f2f4f3; --card: #fff; --ink: #1b2421; --muted: #66716d; --line: #d8dedb;
+  --accent: #23614f; --accent-soft: #ddeee7; --warn: #a3410f; --warn-soft: #fbe9dd; --ok: #2b7a3d;
+  --display: "Bricolage Grotesque", system-ui, sans-serif; --body: "Figtree", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --bg: #121715; --card: #1b2220; --ink: #e6ece9; --muted: #98a59f; --line: #2c3633;
+  --accent: #7fcfb2; --accent-soft: #1d3a31; --warn: #f2a074; --warn-soft: #3a2418; --ok: #7fd08f; color-scheme: dark } }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.45 var(--body);
+  padding: max(12px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) 40px max(14px, env(safe-area-inset-left)) }
+main { max-width: 640px; margin: 0 auto; display: grid; gap: 14px }
+h1 { font: 700 28px/1.1 var(--display); margin: 0 }
+.sub { color: var(--muted); font-size: 14px }
+.tabs, .sorts { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none }
+.tabs button, .sorts button { flex: none; font: 600 14px var(--body); color: var(--ink); background: var(--card);
+  border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer }
+.tabs button[aria-pressed=true], .sorts button[aria-pressed=true] { background: var(--accent); color: var(--card); border-color: var(--accent) }
+.sorts button { font-size: 13px; padding: 6px 12px }
+label.toggle { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--muted) }
+.list { display: grid; gap: 12px }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: grid; grid-template-columns: 96px 1fr }
+.card img, .noimg { width: 96px; height: 100%; min-height: 130px; object-fit: cover; background: var(--line); display: block }
+.body { padding: 10px 12px; display: grid; gap: 6px; min-width: 0 }
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px }
+.price { font: 700 22px var(--display); font-variant-numeric: tabular-nums }
+.all { font-size: 13px; color: var(--muted) }
+.all.over { color: var(--warn) }
+.title { font-size: 14px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.facts { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 14px; font-variant-numeric: tabular-nums }
+.pill { font-size: 12px; font-weight: 700; border-radius: 4px; padding: 2px 7px }
+.safe { background: var(--accent-soft); color: var(--ok) }
+.mid { background: var(--line); color: var(--ink) }
+.risk { background: var(--warn-soft); color: var(--warn) }
+.warn { font-size: 13px; color: var(--warn); background: var(--warn-soft); border-radius: 6px; padding: 5px 8px }
+.actions { display: flex; gap: 5px; flex-wrap: wrap; align-items: center }
+.actions a, .actions button, .actions select { font: 600 13px var(--body); border-radius: 6px; padding: 7px 8px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink); text-decoration: none }
+.actions a { background: var(--accent); color: var(--card); border-color: var(--accent) }
+.empty { color: var(--muted); text-align: center; padding: 40px 10px }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+details { font-size: 13px; color: var(--muted) }
+.req { font-size: 13px }
+.req.over { color: var(--warn); font-weight: 700 }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px }
+.panel h2 { font: 700 18px var(--display); margin: 0 }
+.panel p { margin: 0; font-size: 14px; color: var(--muted) }
+.field { display: grid; gap: 4px; font-size: 14px; font-weight: 600 }
+.field input, dialog textarea { font: 16px var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 9px 10px; width: 100% }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 15px }
+.check input { margin-top: 4px; accent-color: var(--accent) }
+.check small { display: block; color: var(--muted); font-size: 13px }
+dialog { border: 1px solid var(--line); border-radius: 12px; background: var(--card); color: var(--ink); width: min(520px, calc(100vw - 28px)); padding: 16px }
+dialog::backdrop { background: rgb(0 0 0 / .45) }
+dialog textarea { min-height: 200px; resize: vertical; margin-block: 10px }
+.actions .primary, .primary { font: 700 15px var(--body); background: var(--accent); color: var(--card); border: 0; border-radius: 6px; padding: 10px 16px; cursor: pointer }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Place Finder</h1>
+    <div class="sub" id="sub">Loading listings…</div>
+  </header>
+  <nav class="tabs" id="tabs" aria-label="Lists"></nav>
+  <div id="browse" style="display:grid;gap:14px">
+    <div class="sorts" id="sorts" aria-label="Sort"></div>
+    <label class="toggle"><input type="checkbox" id="hideNoCats"> Hide places that don't allow cats</label>
+    <label class="toggle"><input type="checkbox" id="hideWarn"> Hide listings with scam warnings</label>
+    <label class="toggle"><input type="checkbox" id="hideRooms"> Hide rooms in shared places</label>
+    <section class="list" id="list"></section>
+  </div>
+  <div id="prep" hidden style="display:grid;gap:14px">
+    <section class="panel">
+      <h2>About you</h2>
+      <p>Fills in your landlord messages and flags places whose income rule is above yours. Saved only on this phone.</p>
+      <label class="field">First name <input id="p-name" autocomplete="given-name"></label>
+      <label class="field">Job (e.g. "nurse at Morristown Medical Center") <input id="p-job"></label>
+      <label class="field">Yearly income before taxes <input id="p-income" inputmode="numeric" placeholder="e.g. 58000"></label>
+      <label class="field">Earliest move-in <input id="p-movein" placeholder="e.g. right away, or Dec 1"></label>
+      <label class="field">Phone <input id="p-phone" type="tel" autocomplete="tel"></label>
+    </section>
+    <section class="panel">
+      <h2>Apply-ready kit</h2>
+      <p>Good cheap places go in a day or two. Keep all of this in one folder on your phone so you can apply the same day you tour.</p>
+      <div id="kit" style="display:grid;gap:10px"></div>
+    </section>
+    <section class="panel">
+      <h2>If income or credit falls short</h2>
+      <p><b>Private landlords</b> (marked on cards) often care more about a steady job and a good first impression than a strict income multiple. Message them first.</p>
+      <p><b>A guarantor</b> who earns about 80x the rent can co-sign. Or a guarantor company such as TheGuarantors or Insurent co-signs for a fee, usually around one month's rent. Big complexes usually accept them.</p>
+      <p><b>Offer more upfront.</b> An extra month of security deposit can win over a small landlord. In NJ the deposit is capped at 1.5 months' rent.</p>
+    </section>
+  </div>
+  <details>
+    <summary>How places are picked and scored</summary>
+    <p>Pet rules and income requirements are read from each listing's text, so "Pets: ask" means the listing doesn't say. New Craigslist and Zumper/PadMapper apartments under $1,700, refreshed every few hours, within about 40 minutes' drive of Morristown. Newark, Irvington and Elizabeth are left out. The score (0–100) mixes price, drive to Morristown and the town's violent-crime rate (NJ State Police, 2023, per 1,000 residents; the state average is about 2). Utilities are estimated at $150 a month. Warnings are guesses: never send money before seeing a place in person and meeting the landlord.</p>
+  </details>
+</main>
+<dialog id="msg">
+  <b>Message to the landlord</b>
+  <textarea id="msg-text" aria-label="Message"></textarea>
+  <div class="actions"><button class="primary" id="msg-copy">Copy</button><button id="msg-close">Close</button><span class="sub" id="msg-status"></span></div>
+</dialog>
+<script>
+const UTIL = 150, BUDGET = 1700; // ponytail: flat utility estimate
+const TABS = [["new", "New"], ["saved", "Saved"], ["contacted", "Contacted"], ["toured", "Toured"], ["applied", "Applied"], ["nope", "Nope"]];
+const KIT = [
+  ["id", "Photo ID", "Driver's license or passport, photographed front and back"],
+  ["pay", "Last 2–3 pay stubs", "Or an offer letter if you started recently"],
+  ["bank", "Last 2 bank statements", "PDFs from the bank app"],
+  ["credit", "Your own credit report", "Free at annualcreditreport.com, so there are no surprises"],
+  ["ref", "Two references", "A past landlord and a manager, with phone numbers"],
+  ["cat", "Cat's vet and vaccine records", "Plus a photo of the cat. Landlords like a calm, spayed indoor cat"],
+  ["money", "Move-in money ready", "First month plus security deposit (up to 1.5 months), about $3,500 at $1,400 rent"],
+  ["ins", "Renter's insurance quote", "Many places require it; about $15 a month"],
+];
+const SORTS = { score: ["Best match", (a, b) => b.score - a.score], price: ["Cheapest", (a, b) => a.price - b.price],
+  drive: ["Closest", (a, b) => a.driveM - b.driveM], posted: ["Newest", (a, b) => b.posted.localeCompare(a.posted)] };
+
+const store = {
+  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} },
+};
+let status = store.get("status", {}), kit = store.get("kit", {}), me = store.get("me", {});
+let ui = { tab: "new", sort: "score", hideNoCats: true, hideWarn: false, hideRooms: false, ...store.get("ui", {}) };
+let listings = [];
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const town = t => (t || "Unknown").replace(/ (township|borough|town|city|village)$/i, "").replace(/^City of /, "");
+const ago = iso => { const h = Math.round((Date.now() - Date.parse(iso)) / 36e5); return h < 1 ? "just now" : h < 24 ? `${h}h ago` : `${Math.round(h / 24)}d ago`; };
+function safety(v) {
+  if (v == null) return `<span class="pill mid">No crime data</span>`;
+  const [cls, label] = v < 1 ? ["safe", "Low crime"] : v < 2.5 ? ["mid", "Average crime"] : ["risk", "Higher crime"];
+  return `<span class="pill ${cls}">${label} · ${v.toFixed(1)}</span>`;
+}
+
+function pets(c) {
+  return c === "yes" ? `<span class="pill safe">🐱 Cats OK</span>` : c === "no" ? `<span class="pill risk">No cats</span>` : `<span class="pill mid">Pets: ask</span>`;
+}
+function reqs(l) {
+  const parts = [];
+  if (l.incomeMin) parts.push(`needs $${Math.round(l.incomeMin / 1000)}k+/yr income (${l.income})`);
+  else if (l.income) parts.push(l.income);
+  if (l.credit) parts.push(`credit ${l.credit}+`);
+  if (!parts.length) return "";
+  const over = l.incomeMin && +me.income && l.incomeMin > +me.income;
+  return `<div class="req${over ? " over" : ""}">${over ? "Above your income: " : "Requires: "}${esc(parts.join(" · "))}</div>`;
+}
+function message(l) {
+  const n = me.name || "[name]";
+  const what = l.room ? "room" : l.beds === 0 ? "studio" : l.beds ? `${l.beds}-bedroom` : "place";
+  return `Hi, I'm ${n} and I'm interested in your ${what} in ${town(l.town)} listed at $${l.price.toLocaleString()}. Is it still available?
+
+A bit about me: I work full-time${me.job ? ` as ${me.job}` : ""}, I'm a quiet, non-smoking tenant, and I have one indoor cat. I can move in ${me.movein || "soon"} and have my documents ready to apply.
+
+Could I come see it this week? ${me.phone ? `You can reach me at ${me.phone}. ` : ""}Thank you!
+${n}`;
+}
+
+function card(l) {
+  const s = status[l.id] || "new", all = l.price + UTIL;
+  const opts = TABS.map(([k, n]) => `<option value="${k}"${k === s ? " selected" : ""}>${n}</option>`).join("");
+  return `<article class="card">
+    ${l.img ? `<img src="${esc(l.img)}" alt="" loading="lazy">` : `<div class="noimg"></div>`}
+    <div class="body">
+      <div class="top"><span class="price">$${l.price.toLocaleString()}</span>
+        <span class="all${all > BUDGET ? " over" : ""}">≈ $${all.toLocaleString()} w/ utilities</span></div>
+      <div class="title">${esc(l.title)}</div>
+      <div class="facts">
+        <b>${esc(town(l.town))}</b>
+        <span>${l.room ? "Room" : l.beds === 0 ? "Studio" : l.beds ? `${l.beds} bed` : "Size ?"}</span>
+        <span>🚗 ${l.driveM}m Morristown · ${l.driveC}m Cranford</span>
+      </div>
+      <div class="facts">${pets(l.cats)}${safety(l.violent)}${l.landlord === "private" ? `<span class="pill safe">Private landlord</span>` : l.landlord === "complex" ? `<span class="pill mid">Big complex</span>` : ""}</div>
+      ${reqs(l)}
+      <div class="facts"><span class="sub">score ${l.score} · ${l.source || "Craigslist"} · ${ago(l.posted)}</span></div>
+      ${l.scam.length ? `<div class="warn">⚠ ${l.scam.map(esc).join(" · ")}</div>` : ""}
+      <div class="actions">
+        <a href="${esc(l.url)}" target="_blank" rel="noopener">Open</a>
+        <button data-msg="${l.id}">Message</button>
+        ${s === "new" ? `<button data-id="${l.id}" data-to="saved">Save</button><button data-id="${l.id}" data-to="nope">Nope</button>`
+          : `<select data-id="${l.id}" aria-label="Status">${opts}</select>`}
+      </div>
+    </div>
+  </article>`;
+}
+
+function render() {
+  const counts = {};
+  for (const l of listings) { const s = status[l.id] || "new"; counts[s] = (counts[s] || 0) + 1; }
+  const kitDone = KIT.filter(([k]) => kit[k]).length;
+  const tab = ([k, n]) => `<button data-tab="${k}" aria-pressed="${ui.tab === k}">${n} ${counts[k] || 0}</button>`;
+  // "Get ready" sits second so it's visible without scrolling the tab row
+  $("tabs").innerHTML = tab(TABS[0]) + `<button data-tab="prep" aria-pressed="${ui.tab === "prep"}">Get ready ${kitDone}/${KIT.length}</button>`
+    + TABS.slice(1).map(tab).join("");
+  $("prep").hidden = ui.tab !== "prep"; $("browse").hidden = ui.tab === "prep";
+  $("kit").innerHTML = KIT.map(([k, t, d]) => `<label class="check"><input type="checkbox" data-kit="${k}"${kit[k] ? " checked" : ""}><span>${t}<small>${d}</small></span></label>`).join("");
+  $("sorts").innerHTML = Object.entries(SORTS).map(([k, [n]]) => `<button data-sort="${k}" aria-pressed="${ui.sort === k}">${n}</button>`).join("");
+  $("hideNoCats").checked = ui.hideNoCats; $("hideWarn").checked = ui.hideWarn; $("hideRooms").checked = ui.hideRooms;
+  const shown = listings.filter(l => (status[l.id] || "new") === ui.tab && !(ui.hideWarn && l.scam.length) && !(ui.hideRooms && l.room)
+    && !(ui.hideNoCats && l.cats === "no"))
+    .sort(SORTS[ui.sort][1]);
+  $("list").innerHTML = shown.map(card).join("") || `<p class="empty">Nothing here yet.</p>`;
+  store.set("ui", ui);
+}
+
+function setStatus(id, to) { status[id] = to; store.set("status", status); render(); }
+document.addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.tab) ui.tab = b.dataset.tab;
+  else if (b.dataset.sort) ui.sort = b.dataset.sort;
+  else if (b.dataset.to) return setStatus(b.dataset.id, b.dataset.to);
+  else if (b.dataset.msg) {
+    $("msg-text").value = message(listings.find(l => l.id === b.dataset.msg));
+    $("msg-status").textContent = me.name ? "" : "Tip: fill in About you under Get ready.";
+    return $("msg").showModal();
+  }
+  else if (b.id === "msg-close") return $("msg").close();
+  else if (b.id === "msg-copy") {
+    navigator.clipboard.writeText($("msg-text").value).then(() => $("msg-status").textContent = "Copied. Paste it into the listing's contact form.")
+      .catch(() => { $("msg-text").select(); $("msg-status").textContent = "Text selected. Copy it from the menu."; });
+    return;
+  }
+  render();
+});
+document.addEventListener("change", e => {
+  if (e.target.dataset.id) return setStatus(e.target.dataset.id, e.target.value);
+  if (e.target.dataset.kit) { kit[e.target.dataset.kit] = e.target.checked; store.set("kit", kit); return render(); }
+  if (e.target.id in ui) { ui[e.target.id] = e.target.checked; render(); }
+});
+
+for (const k of ["name", "job", "income", "movein", "phone"]) {
+  const el = $("p-" + k); el.value = me[k] || "";
+  el.addEventListener("input", () => { me[k] = k === "income" ? el.value.replace(/[^\d]/g, "") : el.value.trim(); store.set("me", me); });
+}
+
+fetch("listings.json", { cache: "no-store" }).then(r => r.json()).then(d => {
+  listings = d.listings;
+  $("sub").textContent = `${listings.length} places · updated ${ago(d.updated)}`;
+  render();
+}).catch(() => { $("sub").textContent = "Couldn't load listings. Pull down to refresh."; });
+</script>
+</body>
+</html>

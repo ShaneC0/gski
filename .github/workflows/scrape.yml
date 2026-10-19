@@ -1,0 +1,17 @@
+name: scrape
+on:
+  schedule: [{ cron: "17 */3 * * *" }]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24 }
+      - run: node scrape.ts
+      - run: |
+          git config user.name "scraper" && git config user.email "scraper@users.noreply.github.com"
+          git add docs/listings.json && git commit -m "Update listings" && git push || echo "no changes"

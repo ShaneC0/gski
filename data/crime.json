@@ -1,0 +1,2093 @@
+{
+ "_source": {
+  "url": "https://www.nj.gov/njsp/ucr/pdf/current/20250416_2023_Uniform_Crime_Report.xlsx",
+  "year": 2023,
+  "notes": "NJ State Police Uniform Crime Report 2023, \"Index Crimes by County\" (Jan-Dec 2023). violentPer1k = (murder + rape + robbery + aggravated assault) / agency population * 1000; propertyPer1k = (burglary + larceny + motor vehicle theft) / agency population * 1000. Population is the UCR-reported agency population. Null = no municipal police department in the report (patrolled by NJ State Police or a neighboring department) or fewer than 9 months reported, or agency population under 200 (Teterboro); agencies reporting 9-11 months are annualized (x12/months). GEOIDs/names from Census 2024 Gazetteer county subdivisions (NJ)."
+ },
+ "3400300700": {
+  "name": "Allendale borough",
+  "county": "Bergen",
+  "violentPer1k": 0.14,
+  "propertyPer1k": 3.43,
+  "year": 2023
+ },
+ "3400301090": {
+  "name": "Alpine borough",
+  "county": "Bergen",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 8.85,
+  "year": 2023
+ },
+ "3400305170": {
+  "name": "Bergenfield borough",
+  "county": "Bergen",
+  "violentPer1k": 0.14,
+  "propertyPer1k": 3.53,
+  "year": 2023
+ },
+ "3400306490": {
+  "name": "Bogota borough",
+  "county": "Bergen",
+  "violentPer1k": 0.69,
+  "propertyPer1k": 9.59,
+  "year": 2023
+ },
+ "3400310480": {
+  "name": "Carlstadt borough",
+  "county": "Bergen",
+  "violentPer1k": 0.47,
+  "propertyPer1k": 19.17,
+  "year": 2023
+ },
+ "3400313570": {
+  "name": "Cliffside Park borough",
+  "county": "Bergen",
+  "violentPer1k": 0.69,
+  "propertyPer1k": 6.8,
+  "year": 2023
+ },
+ "3400313810": {
+  "name": "Closter borough",
+  "county": "Bergen",
+  "violentPer1k": 0.23,
+  "propertyPer1k": 10.9,
+  "year": 2023
+ },
+ "3400315820": {
+  "name": "Cresskill borough",
+  "county": "Bergen",
+  "violentPer1k": 0.11,
+  "propertyPer1k": 3.33,
+  "year": 2023
+ },
+ "3400317530": {
+  "name": "Demarest borough",
+  "county": "Bergen",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 4.17,
+  "year": 2023
+ },
+ "3400318400": {
+  "name": "Dumont borough",
+  "county": "Bergen",
+  "violentPer1k": 0.44,
+  "propertyPer1k": 3.98,
+  "year": 2023
+ },
+ "3400319510": {
+  "name": "East Rutherford borough",
+  "county": "Bergen",
+  "violentPer1k": 1.18,
+  "propertyPer1k": 17.07,
+  "year": 2023
+ },
+ "3400320020": {
+  "name": "Edgewater borough",
+  "county": "Bergen",
+  "violentPer1k": 0.52,
+  "propertyPer1k": 12.06,
+  "year": 2023
+ },
+ "3400321300": {
+  "name": "Elmwood Park borough",
+  "county": "Bergen",
+  "violentPer1k": 2.7,
+  "propertyPer1k": 17.55,
+  "year": 2023
+ },
+ "3400321450": {
+  "name": "Emerson borough",
+  "county": "Bergen",
+  "violentPer1k": 0.13,
+  "propertyPer1k": 1.9,
+  "year": 2023
+ },
+ "3400321480": {
+  "name": "Englewood city",
+  "county": "Bergen",
+  "violentPer1k": 4.36,
+  "propertyPer1k": 13.31,
+  "year": 2023
+ },
+ "3400321510": {
+  "name": "Englewood Cliffs borough",
+  "county": "Bergen",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 12.99,
+  "year": 2023
+ },
+ "3400322470": {
+  "name": "Fair Lawn borough",
+  "county": "Bergen",
+  "violentPer1k": 0.76,
+  "propertyPer1k": 9.18,
+  "year": 2023
+ },
+ "3400322560": {
+  "name": "Fairview borough",
+  "county": "Bergen",
+  "violentPer1k": 0.81,
+  "propertyPer1k": 11.19,
+  "year": 2023
+ },
+ "3400324420": {
+  "name": "Fort Lee borough",
+  "county": "Bergen",
+  "violentPer1k": 1.04,
+  "propertyPer1k": 13.75,
+  "year": 2023
+ },
+ "3400324990": {
+  "name": "Franklin Lakes borough",
+  "county": "Bergen",
+  "violentPer1k": 0.09,
+  "propertyPer1k": 4.85,
+  "year": 2023
+ },
+ "3400325770": {
+  "name": "Garfield city",
+  "county": "Bergen",
+  "violentPer1k": 1.18,
+  "propertyPer1k": 15.99,
+  "year": 2023
+ },
+ "3400326640": {
+  "name": "Glen Rock borough",
+  "county": "Bergen",
+  "violentPer1k": 0.16,
+  "propertyPer1k": 7.08,
+  "year": 2023
+ },
+ "3400328680": {
+  "name": "Hackensack city",
+  "county": "Bergen",
+  "violentPer1k": 2.46,
+  "propertyPer1k": 23.56,
+  "year": 2023
+ },
+ "3400330150": {
+  "name": "Harrington Park borough",
+  "county": "Bergen",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 3.68,
+  "year": 2023
+ },
+ "3400330420": {
+  "name": "Hasbrouck Heights borough",
+  "county": "Bergen",
+  "violentPer1k": 0.16,
+  "propertyPer1k": 4.59,
+  "year": 2023
+ },
+ "3400330540": {
+  "name": "Haworth borough",
+  "county": "Bergen",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 3.41,
+  "year": 2023
+ },
+ "3400331920": {
+  "name": "Hillsdale borough",
+  "county": "Bergen",
+  "violentPer1k": 0.09,
+  "propertyPer1k": 2.81,
+  "year": 2023
+ },
+ "3400332310": {
+  "name": "Ho-Ho-Kus borough",
+  "county": "Bergen",
+  "violentPer1k": 0.26,
+  "propertyPer1k": 6.73,
+  "year": 2023
+ },
+ "3400340020": {
+  "name": "Leonia borough",
+  "county": "Bergen",
+  "violentPer1k": 0.64,
+  "propertyPer1k": 8.96,
+  "year": 2023
+ },
+ "3400340680": {
+  "name": "Little Ferry borough",
+  "county": "Bergen",
+  "violentPer1k": 0.69,
+  "propertyPer1k": 10.28,
+  "year": 2023
+ },
+ "3400341100": {
+  "name": "Lodi borough",
+  "county": "Bergen",
+  "violentPer1k": 1.35,
+  "propertyPer1k": 14.15,
+  "year": 2023
+ },
+ "3400342090": {
+  "name": "Lyndhurst township",
+  "county": "Bergen",
+  "violentPer1k": 0.88,
+  "propertyPer1k": 7.42,
+  "year": 2023
+ },
+ "3400342750": {
+  "name": "Mahwah township",
+  "county": "Bergen",
+  "violentPer1k": 0.4,
+  "propertyPer1k": 6.88,
+  "year": 2023
+ },
+ "3400344880": {
+  "name": "Maywood borough",
+  "county": "Bergen",
+  "violentPer1k": 1.2,
+  "propertyPer1k": 12.44,
+  "year": 2023
+ },
+ "3400346110": {
+  "name": "Midland Park borough",
+  "county": "Bergen",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 4.28,
+  "year": 2023
+ },
+ "3400347610": {
+  "name": "Montvale borough",
+  "county": "Bergen",
+  "violentPer1k": 0.67,
+  "propertyPer1k": 8.54,
+  "year": 2023
+ },
+ "3400347700": {
+  "name": "Moonachie borough",
+  "county": "Bergen",
+  "violentPer1k": 2.5,
+  "propertyPer1k": 9.28,
+  "year": 2023
+ },
+ "3400351660": {
+  "name": "New Milford borough",
+  "county": "Bergen",
+  "violentPer1k": 0.12,
+  "propertyPer1k": 4.59,
+  "year": 2023
+ },
+ "3400352320": {
+  "name": "North Arlington borough",
+  "county": "Bergen",
+  "violentPer1k": 0.61,
+  "propertyPer1k": 13.02,
+  "year": 2023
+ },
+ "3400353430": {
+  "name": "Northvale borough",
+  "county": "Bergen",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 7.17,
+  "year": 2023
+ },
+ "3400353610": {
+  "name": "Norwood borough",
+  "county": "Bergen",
+  "violentPer1k": 0.17,
+  "propertyPer1k": 3.5,
+  "year": 2023
+ },
+ "3400353850": {
+  "name": "Oakland borough",
+  "county": "Bergen",
+  "violentPer1k": 0.45,
+  "propertyPer1k": 2.84,
+  "year": 2023
+ },
+ "3400354870": {
+  "name": "Old Tappan borough",
+  "county": "Bergen",
+  "violentPer1k": 0.33,
+  "propertyPer1k": 3.75,
+  "year": 2023
+ },
+ "3400354990": {
+  "name": "Oradell borough",
+  "county": "Bergen",
+  "violentPer1k": 0.12,
+  "propertyPer1k": 2.49,
+  "year": 2023
+ },
+ "3400355770": {
+  "name": "Palisades Park borough",
+  "county": "Bergen",
+  "violentPer1k": 0.59,
+  "propertyPer1k": 7.01,
+  "year": 2023
+ },
+ "3400355950": {
+  "name": "Paramus borough",
+  "county": "Bergen",
+  "violentPer1k": 0.26,
+  "propertyPer1k": 30.26,
+  "year": 2023
+ },
+ "3400356130": {
+  "name": "Park Ridge borough",
+  "county": "Bergen",
+  "violentPer1k": 0.11,
+  "propertyPer1k": 2.45,
+  "year": 2023
+ },
+ "3400361680": {
+  "name": "Ramsey borough",
+  "county": "Bergen",
+  "violentPer1k": 0.13,
+  "propertyPer1k": 8.28,
+  "year": 2023
+ },
+ "3400362910": {
+  "name": "Ridgefield borough",
+  "county": "Bergen",
+  "violentPer1k": 0.52,
+  "propertyPer1k": 10.17,
+  "year": 2023
+ },
+ "3400362940": {
+  "name": "Ridgefield Park village",
+  "county": "Bergen",
+  "violentPer1k": 0.9,
+  "propertyPer1k": 14.27,
+  "year": 2023
+ },
+ "3400363000": {
+  "name": "Ridgewood village",
+  "county": "Bergen",
+  "violentPer1k": 0.39,
+  "propertyPer1k": 6.36,
+  "year": 2023
+ },
+ "3400363360": {
+  "name": "River Edge borough",
+  "county": "Bergen",
+  "violentPer1k": 0.41,
+  "propertyPer1k": 9.36,
+  "year": 2023
+ },
+ "3400363690": {
+  "name": "River Vale township",
+  "county": "Bergen",
+  "violentPer1k": 0.19,
+  "propertyPer1k": 3.08,
+  "year": 2023
+ },
+ "3400363990": {
+  "name": "Rochelle Park township",
+  "county": "Bergen",
+  "violentPer1k": 1.73,
+  "propertyPer1k": 13.85,
+  "year": 2023
+ },
+ "3400364170": {
+  "name": "Rockleigh borough",
+  "county": "Bergen",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3400365280": {
+  "name": "Rutherford borough",
+  "county": "Bergen",
+  "violentPer1k": 0.37,
+  "propertyPer1k": 12.16,
+  "year": 2023
+ },
+ "3400365340": {
+  "name": "Saddle Brook township",
+  "county": "Bergen",
+  "violentPer1k": 0.35,
+  "propertyPer1k": 13.42,
+  "year": 2023
+ },
+ "3400365400": {
+  "name": "Saddle River borough",
+  "county": "Bergen",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 11.26,
+  "year": 2023
+ },
+ "3400368970": {
+  "name": "South Hackensack township",
+  "county": "Bergen",
+  "violentPer1k": 4.74,
+  "propertyPer1k": 44.68,
+  "year": 2023
+ },
+ "3400372360": {
+  "name": "Teaneck township",
+  "county": "Bergen",
+  "violentPer1k": 0.64,
+  "propertyPer1k": 11.32,
+  "year": 2023
+ },
+ "3400372420": {
+  "name": "Tenafly borough",
+  "county": "Bergen",
+  "violentPer1k": 0.27,
+  "propertyPer1k": 4.57,
+  "year": 2023
+ },
+ "3400372480": {
+  "name": "Teterboro borough",
+  "county": "Bergen",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3400375140": {
+  "name": "Upper Saddle River borough",
+  "county": "Bergen",
+  "violentPer1k": 0.12,
+  "propertyPer1k": 3.53,
+  "year": 2023
+ },
+ "3400376400": {
+  "name": "Waldwick borough",
+  "county": "Bergen",
+  "violentPer1k": 0.19,
+  "propertyPer1k": 2.04,
+  "year": 2023
+ },
+ "3400376490": {
+  "name": "Wallington borough",
+  "county": "Bergen",
+  "violentPer1k": 0.91,
+  "propertyPer1k": 15.14,
+  "year": 2023
+ },
+ "3400377135": {
+  "name": "Washington township",
+  "county": "Bergen",
+  "violentPer1k": 0.31,
+  "propertyPer1k": 2.31,
+  "year": 2023
+ },
+ "3400380270": {
+  "name": "Westwood borough",
+  "county": "Bergen",
+  "violentPer1k": 0.43,
+  "propertyPer1k": 3.57,
+  "year": 2023
+ },
+ "3400382300": {
+  "name": "Woodcliff Lake borough",
+  "county": "Bergen",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 7.22,
+  "year": 2023
+ },
+ "3400382570": {
+  "name": "Wood-Ridge borough",
+  "county": "Bergen",
+  "violentPer1k": 0.41,
+  "propertyPer1k": 4.86,
+  "year": 2023
+ },
+ "3400383050": {
+  "name": "Wyckoff township",
+  "county": "Bergen",
+  "violentPer1k": 0.19,
+  "propertyPer1k": 5.58,
+  "year": 2023
+ },
+ "3401304695": {
+  "name": "Belleville township",
+  "county": "Essex",
+  "violentPer1k": 2.26,
+  "propertyPer1k": 19.84,
+  "year": 2023
+ },
+ "3401306260": {
+  "name": "Bloomfield township",
+  "county": "Essex",
+  "violentPer1k": 1.02,
+  "propertyPer1k": 15.58,
+  "year": 2023
+ },
+ "3401309250": {
+  "name": "Caldwell borough",
+  "county": "Essex",
+  "violentPer1k": 0.72,
+  "propertyPer1k": 3.5,
+  "year": 2023
+ },
+ "3401311200": {
+  "name": "Cedar Grove township",
+  "county": "Essex",
+  "violentPer1k": 0.37,
+  "propertyPer1k": 6.95,
+  "year": 2023
+ },
+ "3401313045": {
+  "name": "City of Orange township",
+  "county": "Essex",
+  "violentPer1k": 4.71,
+  "propertyPer1k": 17.85,
+  "year": 2023
+ },
+ "3401319390": {
+  "name": "East Orange city",
+  "county": "Essex",
+  "violentPer1k": 4.9,
+  "propertyPer1k": 20.08,
+  "year": 2023
+ },
+ "3401321840": {
+  "name": "Essex Fells borough",
+  "county": "Essex",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 17.64,
+  "year": 2023
+ },
+ "3401322385": {
+  "name": "Fairfield township",
+  "county": "Essex",
+  "violentPer1k": 0.64,
+  "propertyPer1k": 24.05,
+  "year": 2023
+ },
+ "3401326610": {
+  "name": "Glen Ridge borough",
+  "county": "Essex",
+  "violentPer1k": 0.38,
+  "propertyPer1k": 18.11,
+  "year": 2023
+ },
+ "3401334450": {
+  "name": "Irvington township",
+  "county": "Essex",
+  "violentPer1k": 4.93,
+  "propertyPer1k": 27.03,
+  "year": 2023
+ },
+ "3401340890": {
+  "name": "Livingston township",
+  "county": "Essex",
+  "violentPer1k": 0.5,
+  "propertyPer1k": 12.58,
+  "year": 2023
+ },
+ "3401343800": {
+  "name": "Maplewood township",
+  "county": "Essex",
+  "violentPer1k": 0.73,
+  "propertyPer1k": 11.35,
+  "year": 2023
+ },
+ "3401346380": {
+  "name": "Millburn township",
+  "county": "Essex",
+  "violentPer1k": 0.19,
+  "propertyPer1k": 24.49,
+  "year": 2023
+ },
+ "3401347500": {
+  "name": "Montclair township",
+  "county": "Essex",
+  "violentPer1k": 1.09,
+  "propertyPer1k": 4.75,
+  "year": 2023
+ },
+ "3401351000": {
+  "name": "Newark city",
+  "county": "Essex",
+  "violentPer1k": 5.04,
+  "propertyPer1k": 22.92,
+  "year": 2023
+ },
+ "3401352620": {
+  "name": "North Caldwell borough",
+  "county": "Essex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401353680": {
+  "name": "Nutley township",
+  "county": "Essex",
+  "violentPer1k": 0.98,
+  "propertyPer1k": 8.43,
+  "year": 2023
+ },
+ "3401364590": {
+  "name": "Roseland borough",
+  "county": "Essex",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 9.4,
+  "year": 2023
+ },
+ "3401369274": {
+  "name": "South Orange Village township",
+  "county": "Essex",
+  "violentPer1k": 0.4,
+  "propertyPer1k": 15.04,
+  "year": 2023
+ },
+ "3401375815": {
+  "name": "Verona township",
+  "county": "Essex",
+  "violentPer1k": 0.28,
+  "propertyPer1k": 6.6,
+  "year": 2023
+ },
+ "3401378510": {
+  "name": "West Caldwell township",
+  "county": "Essex",
+  "violentPer1k": 0.27,
+  "propertyPer1k": 7.52,
+  "year": 2023
+ },
+ "3401379800": {
+  "name": "West Orange township",
+  "county": "Essex",
+  "violentPer1k": 1.89,
+  "propertyPer1k": 14.77,
+  "year": 2023
+ },
+ "3401703580": {
+  "name": "Bayonne city",
+  "county": "Hudson",
+  "violentPer1k": 2.69,
+  "propertyPer1k": 14.75,
+  "year": 2023
+ },
+ "3401719360": {
+  "name": "East Newark borough",
+  "county": "Hudson",
+  "violentPer1k": 1.11,
+  "propertyPer1k": 11.46,
+  "year": 2023
+ },
+ "3401728650": {
+  "name": "Guttenberg town",
+  "county": "Hudson",
+  "violentPer1k": 3.49,
+  "propertyPer1k": 8.9,
+  "year": 2023
+ },
+ "3401730210": {
+  "name": "Harrison town",
+  "county": "Hudson",
+  "violentPer1k": 2.74,
+  "propertyPer1k": 21.21,
+  "year": 2023
+ },
+ "3401732250": {
+  "name": "Hoboken city",
+  "county": "Hudson",
+  "violentPer1k": 1.51,
+  "propertyPer1k": 14.76,
+  "year": 2023
+ },
+ "3401736000": {
+  "name": "Jersey City city",
+  "county": "Hudson",
+  "violentPer1k": 5.04,
+  "propertyPer1k": 19.82,
+  "year": 2023
+ },
+ "3401736510": {
+  "name": "Kearny town",
+  "county": "Hudson",
+  "violentPer1k": 1.52,
+  "propertyPer1k": 23.82,
+  "year": 2023
+ },
+ "3401752470": {
+  "name": "North Bergen township",
+  "county": "Hudson",
+  "violentPer1k": 1.17,
+  "propertyPer1k": 9.86,
+  "year": 2023
+ },
+ "3401766570": {
+  "name": "Secaucus town",
+  "county": "Hudson",
+  "violentPer1k": 1.73,
+  "propertyPer1k": 32.81,
+  "year": 2023
+ },
+ "3401774630": {
+  "name": "Union City city",
+  "county": "Hudson",
+  "violentPer1k": 2.88,
+  "propertyPer1k": 15.47,
+  "year": 2023
+ },
+ "3401777930": {
+  "name": "Weehawken township",
+  "county": "Hudson",
+  "violentPer1k": 0.79,
+  "propertyPer1k": 16.97,
+  "year": 2023
+ },
+ "3401779610": {
+  "name": "West New York town",
+  "county": "Hudson",
+  "violentPer1k": 2.23,
+  "propertyPer1k": 12.04,
+  "year": 2023
+ },
+ "3401900550": {
+  "name": "Alexandria township",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401905650": {
+  "name": "Bethlehem township",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401906370": {
+  "name": "Bloomsbury borough",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401909280": {
+  "name": "Califon borough",
+  "county": "Hunterdon",
+  "violentPer1k": 0.97,
+  "propertyPer1k": 0.97,
+  "year": 2023
+ },
+ "3401913720": {
+  "name": "Clinton town",
+  "county": "Hunterdon",
+  "violentPer1k": 0.37,
+  "propertyPer1k": 3.37,
+  "year": 2023
+ },
+ "3401913750": {
+  "name": "Clinton township",
+  "county": "Hunterdon",
+  "violentPer1k": 0.16,
+  "propertyPer1k": 3.9,
+  "year": 2023
+ },
+ "3401917170": {
+  "name": "Delaware township",
+  "county": "Hunterdon",
+  "violentPer1k": 0.46,
+  "propertyPer1k": 1.59,
+  "year": 2023
+ },
+ "3401918820": {
+  "name": "East Amwell township",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401923700": {
+  "name": "Flemington borough",
+  "county": "Hunterdon",
+  "violentPer1k": 0.22,
+  "propertyPer1k": 28.36,
+  "year": 2023
+ },
+ "3401924870": {
+  "name": "Franklin township",
+  "county": "Hunterdon",
+  "violentPer1k": 0.28,
+  "propertyPer1k": 3.68,
+  "year": 2023
+ },
+ "3401925350": {
+  "name": "Frenchtown borough",
+  "county": "Hunterdon",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 2.97,
+  "year": 2023
+ },
+ "3401926550": {
+  "name": "Glen Gardner borough",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401929460": {
+  "name": "Hampton borough",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401931320": {
+  "name": "High Bridge borough",
+  "county": "Hunterdon",
+  "violentPer1k": 0.89,
+  "propertyPer1k": 3.27,
+  "year": 2023
+ },
+ "3401932460": {
+  "name": "Holland township",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401937065": {
+  "name": "Kingwood township",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401938610": {
+  "name": "Lambertville city",
+  "county": "Hunterdon",
+  "violentPer1k": 0.53,
+  "propertyPer1k": 7.94,
+  "year": 2023
+ },
+ "3401939630": {
+  "name": "Lebanon borough",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401939660": {
+  "name": "Lebanon township",
+  "county": "Hunterdon",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 4.98,
+  "year": 2023
+ },
+ "3401946260": {
+  "name": "Milford borough",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401961920": {
+  "name": "Raritan township",
+  "county": "Hunterdon",
+  "violentPer1k": 0.31,
+  "propertyPer1k": 1.9,
+  "year": 2023
+ },
+ "3401962250": {
+  "name": "Readington township",
+  "county": "Hunterdon",
+  "violentPer1k": 0.19,
+  "propertyPer1k": 4.36,
+  "year": 2023
+ },
+ "3401970980": {
+  "name": "Stockton borough",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401972510": {
+  "name": "Tewksbury township",
+  "county": "Hunterdon",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 2.1,
+  "year": 2023
+ },
+ "3401974420": {
+  "name": "Union township",
+  "county": "Hunterdon",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3401978230": {
+  "name": "West Amwell township",
+  "county": "Hunterdon",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 10.28,
+  "year": 2023
+ },
+ "3402310750": {
+  "name": "Carteret borough",
+  "county": "Middlesex",
+  "violentPer1k": 2.42,
+  "propertyPer1k": 15.93,
+  "year": 2023
+ },
+ "3402315550": {
+  "name": "Cranbury township",
+  "county": "Middlesex",
+  "violentPer1k": 0.46,
+  "propertyPer1k": 7.8,
+  "year": 2023
+ },
+ "3402318490": {
+  "name": "Dunellen borough",
+  "county": "Middlesex",
+  "violentPer1k": 1.21,
+  "propertyPer1k": 10.09,
+  "year": 2023
+ },
+ "3402319000": {
+  "name": "East Brunswick township",
+  "county": "Middlesex",
+  "violentPer1k": 0.93,
+  "propertyPer1k": 13.5,
+  "year": 2023
+ },
+ "3402320230": {
+  "name": "Edison township",
+  "county": "Middlesex",
+  "violentPer1k": 1.84,
+  "propertyPer1k": 21.3,
+  "year": 2023
+ },
+ "3402330840": {
+  "name": "Helmetta borough",
+  "county": "Middlesex",
+  "violentPer1k": 0.45,
+  "propertyPer1k": 3.6,
+  "year": 2023
+ },
+ "3402331470": {
+  "name": "Highland Park borough",
+  "county": "Middlesex",
+  "violentPer1k": 0.85,
+  "propertyPer1k": 14.37,
+  "year": 2023
+ },
+ "3402334890": {
+  "name": "Jamesburg borough",
+  "county": "Middlesex",
+  "violentPer1k": 0.33,
+  "propertyPer1k": 7.76,
+  "year": 2023
+ },
+ "3402345690": {
+  "name": "Metuchen borough",
+  "county": "Middlesex",
+  "violentPer1k": 0.39,
+  "propertyPer1k": 11.92,
+  "year": 2023
+ },
+ "3402345900": {
+  "name": "Middlesex borough",
+  "county": "Middlesex",
+  "violentPer1k": 0.21,
+  "propertyPer1k": 7.02,
+  "year": 2023
+ },
+ "3402346620": {
+  "name": "Milltown borough",
+  "county": "Middlesex",
+  "violentPer1k": 1.39,
+  "propertyPer1k": 13.05,
+  "year": 2023
+ },
+ "3402347280": {
+  "name": "Monroe township",
+  "county": "Middlesex",
+  "violentPer1k": 0.27,
+  "propertyPer1k": 2.32,
+  "year": 2023
+ },
+ "3402351210": {
+  "name": "New Brunswick city",
+  "county": "Middlesex",
+  "violentPer1k": 9.06,
+  "propertyPer1k": 28.49,
+  "year": 2023
+ },
+ "3402352560": {
+  "name": "North Brunswick township",
+  "county": "Middlesex",
+  "violentPer1k": 1.8,
+  "propertyPer1k": 16.85,
+  "year": 2023
+ },
+ "3402354705": {
+  "name": "Old Bridge township",
+  "county": "Middlesex",
+  "violentPer1k": 0.72,
+  "propertyPer1k": 9.53,
+  "year": 2023
+ },
+ "3402358200": {
+  "name": "Perth Amboy city",
+  "county": "Middlesex",
+  "violentPer1k": 3.81,
+  "propertyPer1k": 16.93,
+  "year": 2023
+ },
+ "3402359010": {
+  "name": "Piscataway township",
+  "county": "Middlesex",
+  "violentPer1k": 1.41,
+  "propertyPer1k": 9.9,
+  "year": 2023
+ },
+ "3402359280": {
+  "name": "Plainsboro township",
+  "county": "Middlesex",
+  "violentPer1k": 0.21,
+  "propertyPer1k": 5.29,
+  "year": 2023
+ },
+ "3402365790": {
+  "name": "Sayreville borough",
+  "county": "Middlesex",
+  "violentPer1k": 0.81,
+  "propertyPer1k": 12.33,
+  "year": 2023
+ },
+ "3402368550": {
+  "name": "South Amboy city",
+  "county": "Middlesex",
+  "violentPer1k": 1.68,
+  "propertyPer1k": 11.43,
+  "year": 2023
+ },
+ "3402368790": {
+  "name": "South Brunswick township",
+  "county": "Middlesex",
+  "violentPer1k": 1.31,
+  "propertyPer1k": 8.15,
+  "year": 2023
+ },
+ "3402369390": {
+  "name": "South Plainfield borough",
+  "county": "Middlesex",
+  "violentPer1k": 1.56,
+  "propertyPer1k": 16.81,
+  "year": 2023
+ },
+ "3402369420": {
+  "name": "South River borough",
+  "county": "Middlesex",
+  "violentPer1k": 0.92,
+  "propertyPer1k": 4.31,
+  "year": 2023
+ },
+ "3402369810": {
+  "name": "Spotswood borough",
+  "county": "Middlesex",
+  "violentPer1k": 0.47,
+  "propertyPer1k": 8.0,
+  "year": 2023
+ },
+ "3402382000": {
+  "name": "Woodbridge township",
+  "county": "Middlesex",
+  "violentPer1k": 2.37,
+  "propertyPer1k": 18.48,
+  "year": 2023
+ },
+ "3402706610": {
+  "name": "Boonton town",
+  "county": "Morris",
+  "violentPer1k": 0.47,
+  "propertyPer1k": 10.31,
+  "year": 2023
+ },
+ "3402706640": {
+  "name": "Boonton township",
+  "county": "Morris",
+  "violentPer1k": 0.68,
+  "propertyPer1k": 2.28,
+  "year": 2023
+ },
+ "3402709040": {
+  "name": "Butler borough",
+  "county": "Morris",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 6.03,
+  "year": 2023
+ },
+ "3402712100": {
+  "name": "Chatham borough",
+  "county": "Morris",
+  "violentPer1k": 0.22,
+  "propertyPer1k": 7.28,
+  "year": 2023
+ },
+ "3402712130": {
+  "name": "Chatham township",
+  "county": "Morris",
+  "violentPer1k": 0.19,
+  "propertyPer1k": 3.43,
+  "year": 2023
+ },
+ "3402712580": {
+  "name": "Chester borough",
+  "county": "Morris",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 13.06,
+  "year": 2023
+ },
+ "3402712610": {
+  "name": "Chester township",
+  "county": "Morris",
+  "violentPer1k": 0.25,
+  "propertyPer1k": 2.65,
+  "year": 2023
+ },
+ "3402717650": {
+  "name": "Denville township",
+  "county": "Morris",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 4.17,
+  "year": 2023
+ },
+ "3402718070": {
+  "name": "Dover town",
+  "county": "Morris",
+  "violentPer1k": 1.86,
+  "propertyPer1k": 4.48,
+  "year": 2023
+ },
+ "3402719210": {
+  "name": "East Hanover township",
+  "county": "Morris",
+  "violentPer1k": 0.09,
+  "propertyPer1k": 18.24,
+  "year": 2023
+ },
+ "3402723910": {
+  "name": "Florham Park borough",
+  "county": "Morris",
+  "violentPer1k": 0.08,
+  "propertyPer1k": 7.47,
+  "year": 2023
+ },
+ "3402729550": {
+  "name": "Hanover township",
+  "county": "Morris",
+  "violentPer1k": 0.68,
+  "propertyPer1k": 14.18,
+  "year": 2023
+ },
+ "3402729700": {
+  "name": "Harding township",
+  "county": "Morris",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 5.38,
+  "year": 2023
+ },
+ "3402734980": {
+  "name": "Jefferson township",
+  "county": "Morris",
+  "violentPer1k": 0.42,
+  "propertyPer1k": 2.1,
+  "year": 2023
+ },
+ "3402737110": {
+  "name": "Kinnelon borough",
+  "county": "Morris",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 3.81,
+  "year": 2023
+ },
+ "3402740290": {
+  "name": "Lincoln Park borough",
+  "county": "Morris",
+  "violentPer1k": 0.57,
+  "propertyPer1k": 8.24,
+  "year": 2023
+ },
+ "3402741362": {
+  "name": "Long Hill township",
+  "county": "Morris",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 4.39,
+  "year": 2023
+ },
+ "3402742510": {
+  "name": "Madison borough",
+  "county": "Morris",
+  "violentPer1k": 0.11,
+  "propertyPer1k": 4.15,
+  "year": 2023
+ },
+ "3402745330": {
+  "name": "Mendham borough",
+  "county": "Morris",
+  "violentPer1k": 0.4,
+  "propertyPer1k": 3.38,
+  "year": 2023
+ },
+ "3402745360": {
+  "name": "Mendham township",
+  "county": "Morris",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 2.24,
+  "year": 2023
+ },
+ "3402746860": {
+  "name": "Mine Hill township",
+  "county": "Morris",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 3.03,
+  "year": 2023
+ },
+ "3402747670": {
+  "name": "Montville township",
+  "county": "Morris",
+  "violentPer1k": 0.23,
+  "propertyPer1k": 5.55,
+  "year": 2023
+ },
+ "3402748090": {
+  "name": "Morris township",
+  "county": "Morris",
+  "violentPer1k": 0.21,
+  "propertyPer1k": 4.25,
+  "year": 2023
+ },
+ "3402748210": {
+  "name": "Morris Plains borough",
+  "county": "Morris",
+  "violentPer1k": 0.15,
+  "propertyPer1k": 10.66,
+  "year": 2023
+ },
+ "3402748300": {
+  "name": "Morristown town",
+  "county": "Morris",
+  "violentPer1k": 1.29,
+  "propertyPer1k": 4.57,
+  "year": 2023
+ },
+ "3402748480": {
+  "name": "Mountain Lakes borough",
+  "county": "Morris",
+  "violentPer1k": 0.23,
+  "propertyPer1k": 5.71,
+  "year": 2023
+ },
+ "3402748690": {
+  "name": "Mount Arlington borough",
+  "county": "Morris",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 5.36,
+  "year": 2023
+ },
+ "3402749080": {
+  "name": "Mount Olive township",
+  "county": "Morris",
+  "violentPer1k": 0.43,
+  "propertyPer1k": 6.05,
+  "year": 2023
+ },
+ "3402750130": {
+  "name": "Netcong borough",
+  "county": "Morris",
+  "violentPer1k": 1.85,
+  "propertyPer1k": 5.55,
+  "year": 2023
+ },
+ "3402756460": {
+  "name": "Parsippany-Troy Hills township",
+  "county": "Morris",
+  "violentPer1k": 0.34,
+  "propertyPer1k": 9.87,
+  "year": 2023
+ },
+ "3402758110": {
+  "name": "Pequannock township",
+  "county": "Morris",
+  "violentPer1k": 0.58,
+  "propertyPer1k": 7.06,
+  "year": 2023
+ },
+ "3402761890": {
+  "name": "Randolph township",
+  "county": "Morris",
+  "violentPer1k": 0.11,
+  "propertyPer1k": 3.2,
+  "year": 2023
+ },
+ "3402763300": {
+  "name": "Riverdale borough",
+  "county": "Morris",
+  "violentPer1k": 0.46,
+  "propertyPer1k": 28.52,
+  "year": 2023
+ },
+ "3402764050": {
+  "name": "Rockaway borough",
+  "county": "Morris",
+  "violentPer1k": 0.15,
+  "propertyPer1k": 4.78,
+  "year": 2023
+ },
+ "3402764080": {
+  "name": "Rockaway township",
+  "county": "Morris",
+  "violentPer1k": 0.58,
+  "propertyPer1k": 9.58,
+  "year": 2023
+ },
+ "3402764980": {
+  "name": "Roxbury township",
+  "county": "Morris",
+  "violentPer1k": 0.17,
+  "propertyPer1k": 7.64,
+  "year": 2023
+ },
+ "3402775890": {
+  "name": "Victory Gardens borough",
+  "county": "Morris",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3402777240": {
+  "name": "Washington township",
+  "county": "Morris",
+  "violentPer1k": 0.37,
+  "propertyPer1k": 3.31,
+  "year": 2023
+ },
+ "3402780390": {
+  "name": "Wharton borough",
+  "county": "Morris",
+  "violentPer1k": 0.3,
+  "propertyPer1k": 14.12,
+  "year": 2023
+ },
+ "3403106340": {
+  "name": "Bloomingdale borough",
+  "county": "Passaic",
+  "violentPer1k": 0.71,
+  "propertyPer1k": 2.5,
+  "year": 2023
+ },
+ "3403113690": {
+  "name": "Clifton city",
+  "county": "Passaic",
+  "violentPer1k": 1.45,
+  "propertyPer1k": 20.52,
+  "year": 2023
+ },
+ "3403129070": {
+  "name": "Haledon borough",
+  "county": "Passaic",
+  "violentPer1k": 1.08,
+  "propertyPer1k": 15.34,
+  "year": 2023
+ },
+ "3403130570": {
+  "name": "Hawthorne borough",
+  "county": "Passaic",
+  "violentPer1k": 0.36,
+  "propertyPer1k": 9.62,
+  "year": 2023
+ },
+ "3403140620": {
+  "name": "Little Falls township",
+  "county": "Passaic",
+  "violentPer1k": 1.13,
+  "propertyPer1k": 6.59,
+  "year": 2023
+ },
+ "3403153040": {
+  "name": "North Haledon borough",
+  "county": "Passaic",
+  "violentPer1k": 0.28,
+  "propertyPer1k": 1.38,
+  "year": 2023
+ },
+ "3403156550": {
+  "name": "Passaic city",
+  "county": "Passaic",
+  "violentPer1k": 5.98,
+  "propertyPer1k": 21.03,
+  "year": 2023
+ },
+ "3403157000": {
+  "name": "Paterson city",
+  "county": "Passaic",
+  "violentPer1k": 9.63,
+  "propertyPer1k": 25.46,
+  "year": 2023
+ },
+ "3403160090": {
+  "name": "Pompton Lakes borough",
+  "county": "Passaic",
+  "violentPer1k": 0.26,
+  "propertyPer1k": 3.78,
+  "year": 2023
+ },
+ "3403161170": {
+  "name": "Prospect Park borough",
+  "county": "Passaic",
+  "violentPer1k": 0.17,
+  "propertyPer1k": 16.67,
+  "year": 2023
+ },
+ "3403163150": {
+  "name": "Ringwood borough",
+  "county": "Passaic",
+  "violentPer1k": 0.08,
+  "propertyPer1k": 2.05,
+  "year": 2023
+ },
+ "3403173140": {
+  "name": "Totowa borough",
+  "county": "Passaic",
+  "violentPer1k": 1.36,
+  "propertyPer1k": 18.03,
+  "year": 2023
+ },
+ "3403176730": {
+  "name": "Wanaque borough",
+  "county": "Passaic",
+  "violentPer1k": 0.16,
+  "propertyPer1k": 1.95,
+  "year": 2023
+ },
+ "3403177840": {
+  "name": "Wayne township",
+  "county": "Passaic",
+  "violentPer1k": 0.92,
+  "propertyPer1k": 20.34,
+  "year": 2023
+ },
+ "3403179460": {
+  "name": "West Milford township",
+  "county": "Passaic",
+  "violentPer1k": 0.51,
+  "propertyPer1k": 2.3,
+  "year": 2023
+ },
+ "3403182423": {
+  "name": "Woodland Park borough",
+  "county": "Passaic",
+  "violentPer1k": 0.68,
+  "propertyPer1k": 13.1,
+  "year": 2023
+ },
+ "3403504450": {
+  "name": "Bedminster township",
+  "county": "Somerset",
+  "violentPer1k": 0.24,
+  "propertyPer1k": 4.1,
+  "year": 2023
+ },
+ "3403505560": {
+  "name": "Bernards township",
+  "county": "Somerset",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 2.3,
+  "year": 2023
+ },
+ "3403505590": {
+  "name": "Bernardsville borough",
+  "county": "Somerset",
+  "violentPer1k": 0.13,
+  "propertyPer1k": 4.31,
+  "year": 2023
+ },
+ "3403506790": {
+  "name": "Bound Brook borough",
+  "county": "Somerset",
+  "violentPer1k": 0.94,
+  "propertyPer1k": 15.76,
+  "year": 2023
+ },
+ "3403507180": {
+  "name": "Branchburg township",
+  "county": "Somerset",
+  "violentPer1k": 0.59,
+  "propertyPer1k": 5.54,
+  "year": 2023
+ },
+ "3403507720": {
+  "name": "Bridgewater township",
+  "county": "Somerset",
+  "violentPer1k": 0.07,
+  "propertyPer1k": 6.79,
+  "year": 2023
+ },
+ "3403522890": {
+  "name": "Far Hills borough",
+  "county": "Somerset",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403524900": {
+  "name": "Franklin township",
+  "county": "Somerset",
+  "violentPer1k": 0.94,
+  "propertyPer1k": 12.14,
+  "year": 2023
+ },
+ "3403527510": {
+  "name": "Green Brook township",
+  "county": "Somerset",
+  "violentPer1k": 0.27,
+  "propertyPer1k": 7.39,
+  "year": 2023
+ },
+ "3403531890": {
+  "name": "Hillsborough township",
+  "county": "Somerset",
+  "violentPer1k": 0.59,
+  "propertyPer1k": 5.91,
+  "year": 2023
+ },
+ "3403543620": {
+  "name": "Manville borough",
+  "county": "Somerset",
+  "violentPer1k": 0.95,
+  "propertyPer1k": 14.13,
+  "year": 2023
+ },
+ "3403546590": {
+  "name": "Millstone borough",
+  "county": "Somerset",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403547580": {
+  "name": "Montgomery township",
+  "county": "Somerset",
+  "violentPer1k": 0.04,
+  "propertyPer1k": 3.59,
+  "year": 2023
+ },
+ "3403553280": {
+  "name": "North Plainfield borough",
+  "county": "Somerset",
+  "violentPer1k": 2.21,
+  "propertyPer1k": 17.73,
+  "year": 2023
+ },
+ "3403557300": {
+  "name": "Peapack and Gladstone borough",
+  "county": "Somerset",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 8.11,
+  "year": 2023
+ },
+ "3403561980": {
+  "name": "Raritan borough",
+  "county": "Somerset",
+  "violentPer1k": 0.37,
+  "propertyPer1k": 5.85,
+  "year": 2023
+ },
+ "3403564320": {
+  "name": "Rocky Hill borough",
+  "county": "Somerset",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403568460": {
+  "name": "Somerville borough",
+  "county": "Somerset",
+  "violentPer1k": 0.63,
+  "propertyPer1k": 11.64,
+  "year": 2023
+ },
+ "3403568730": {
+  "name": "South Bound Brook borough",
+  "county": "Somerset",
+  "violentPer1k": 0.21,
+  "propertyPer1k": 9.74,
+  "year": 2023
+ },
+ "3403576940": {
+  "name": "Warren township",
+  "county": "Somerset",
+  "violentPer1k": 0.06,
+  "propertyPer1k": 6.11,
+  "year": 2023
+ },
+ "3403577600": {
+  "name": "Watchung borough",
+  "county": "Somerset",
+  "violentPer1k": 0.48,
+  "propertyPer1k": 38.54,
+  "year": 2023
+ },
+ "3403701330": {
+  "name": "Andover borough",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403701360": {
+  "name": "Andover township",
+  "county": "Sussex",
+  "violentPer1k": 0.17,
+  "propertyPer1k": 2.07,
+  "year": 2023
+ },
+ "3403707300": {
+  "name": "Branchville borough",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403709160": {
+  "name": "Byram township",
+  "county": "Sussex",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 2.78,
+  "year": 2023
+ },
+ "3403724810": {
+  "name": "Frankford township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403724930": {
+  "name": "Franklin borough",
+  "county": "Sussex",
+  "violentPer1k": 1.07,
+  "propertyPer1k": 8.37,
+  "year": 2023
+ },
+ "3403725140": {
+  "name": "Fredon township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403727420": {
+  "name": "Green township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403729220": {
+  "name": "Hamburg borough",
+  "county": "Sussex",
+  "violentPer1k": 2.58,
+  "propertyPer1k": 2.26,
+  "year": 2023
+ },
+ "3403729490": {
+  "name": "Hampton township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403729850": {
+  "name": "Hardyston township",
+  "county": "Sussex",
+  "violentPer1k": 0.52,
+  "propertyPer1k": 3.76,
+  "year": 2023
+ },
+ "3403732910": {
+  "name": "Hopatcong borough",
+  "county": "Sussex",
+  "violentPer1k": 1.0,
+  "propertyPer1k": 0.93,
+  "year": 2023
+ },
+ "3403737440": {
+  "name": "Lafayette township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403747430": {
+  "name": "Montague township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403751930": {
+  "name": "Newton town",
+  "county": "Sussex",
+  "violentPer1k": 1.88,
+  "propertyPer1k": 6.78,
+  "year": 2023
+ },
+ "3403754660": {
+  "name": "Ogdensburg borough",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403765700": {
+  "name": "Sandyston township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403769690": {
+  "name": "Sparta township",
+  "county": "Sussex",
+  "violentPer1k": 0.32,
+  "propertyPer1k": 4.97,
+  "year": 2023
+ },
+ "3403770380": {
+  "name": "Stanhope borough",
+  "county": "Sussex",
+  "violentPer1k": 0.61,
+  "propertyPer1k": 3.38,
+  "year": 2023
+ },
+ "3403770890": {
+  "name": "Stillwater township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403771670": {
+  "name": "Sussex borough",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403775740": {
+  "name": "Vernon township",
+  "county": "Sussex",
+  "violentPer1k": 0.14,
+  "propertyPer1k": 0.97,
+  "year": 2023
+ },
+ "3403776640": {
+  "name": "Walpack township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403776790": {
+  "name": "Wantage township",
+  "county": "Sussex",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3403905320": {
+  "name": "Berkeley Heights township",
+  "county": "Union",
+  "violentPer1k": 0.29,
+  "propertyPer1k": 6.05,
+  "year": 2023
+ },
+ "3403913150": {
+  "name": "Clark township",
+  "county": "Union",
+  "violentPer1k": 0.42,
+  "propertyPer1k": 20.33,
+  "year": 2023
+ },
+ "3403915640": {
+  "name": "Cranford township",
+  "county": "Union",
+  "violentPer1k": 0.36,
+  "propertyPer1k": 9.21,
+  "year": 2023
+ },
+ "3403921000": {
+  "name": "Elizabeth city",
+  "county": "Union",
+  "violentPer1k": 5.57,
+  "propertyPer1k": 29.71,
+  "year": 2023
+ },
+ "3403922860": {
+  "name": "Fanwood borough",
+  "county": "Union",
+  "violentPer1k": 0.12,
+  "propertyPer1k": 4.08,
+  "year": 2023
+ },
+ "3403925800": {
+  "name": "Garwood borough",
+  "county": "Union",
+  "violentPer1k": 0.66,
+  "propertyPer1k": 7.08,
+  "year": 2023
+ },
+ "3403931980": {
+  "name": "Hillside township",
+  "county": "Union",
+  "violentPer1k": 2.32,
+  "propertyPer1k": 28.95,
+  "year": 2023
+ },
+ "3403936690": {
+  "name": "Kenilworth borough",
+  "county": "Union",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 9.15,
+  "year": 2023
+ },
+ "3403940350": {
+  "name": "Linden city",
+  "county": "Union",
+  "violentPer1k": 4.25,
+  "propertyPer1k": 35.47,
+  "year": 2023
+ },
+ "3403948510": {
+  "name": "Mountainside borough",
+  "county": "Union",
+  "violentPer1k": 0.14,
+  "propertyPer1k": 2.23,
+  "year": 2023
+ },
+ "3403951810": {
+  "name": "New Providence borough",
+  "county": "Union",
+  "violentPer1k": 0.15,
+  "propertyPer1k": 4.65,
+  "year": 2023
+ },
+ "3403959190": {
+  "name": "Plainfield city",
+  "county": "Union",
+  "violentPer1k": 5.5,
+  "propertyPer1k": 17.54,
+  "year": 2023
+ },
+ "3403961530": {
+  "name": "Rahway city",
+  "county": "Union",
+  "violentPer1k": 1.59,
+  "propertyPer1k": 9.98,
+  "year": 2023
+ },
+ "3403964620": {
+  "name": "Roselle borough",
+  "county": "Union",
+  "violentPer1k": 1.72,
+  "propertyPer1k": 13.41,
+  "year": 2023
+ },
+ "3403964650": {
+  "name": "Roselle Park borough",
+  "county": "Union",
+  "violentPer1k": 0.43,
+  "propertyPer1k": 11.49,
+  "year": 2023
+ },
+ "3403966060": {
+  "name": "Scotch Plains township",
+  "county": "Union",
+  "violentPer1k": 0.32,
+  "propertyPer1k": 7.38,
+  "year": 2023
+ },
+ "3403970020": {
+  "name": "Springfield township",
+  "county": "Union",
+  "violentPer1k": 0.77,
+  "propertyPer1k": 11.65,
+  "year": 2023
+ },
+ "3403971430": {
+  "name": "Summit city",
+  "county": "Union",
+  "violentPer1k": 0.48,
+  "propertyPer1k": 8.04,
+  "year": 2023
+ },
+ "3403974480": {
+  "name": "Union township",
+  "county": "Union",
+  "violentPer1k": 0.89,
+  "propertyPer1k": 19.78,
+  "year": 2023
+ },
+ "3403979040": {
+  "name": "Westfield town",
+  "county": "Union",
+  "violentPer1k": 0.16,
+  "propertyPer1k": 8.7,
+  "year": 2023
+ },
+ "3403981650": {
+  "name": "Winfield township",
+  "county": "Union",
+  "violentPer1k": 0.64,
+  "propertyPer1k": 11.55,
+  "year": 2023
+ },
+ "3404100670": {
+  "name": "Allamuchy township",
+  "county": "Warren",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3404101030": {
+  "name": "Alpha borough",
+  "county": "Warren",
+  "violentPer1k": 0.44,
+  "propertyPer1k": 4.44,
+  "year": 2023
+ },
+ "3404104990": {
+  "name": "Belvidere town",
+  "county": "Warren",
+  "violentPer1k": 0.78,
+  "propertyPer1k": 6.66,
+  "year": 2023
+ },
+ "3404106160": {
+  "name": "Blairstown township",
+  "county": "Warren",
+  "violentPer1k": 1.94,
+  "propertyPer1k": 4.23,
+  "year": 2023
+ },
+ "3404124960": {
+  "name": "Franklin township",
+  "county": "Warren",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3404125320": {
+  "name": "Frelinghuysen township",
+  "county": "Warren",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3404128260": {
+  "name": "Greenwich township",
+  "county": "Warren",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 27.63,
+  "year": 2023
+ },
+ "3404128710": {
+  "name": "Hackettstown town",
+  "county": "Warren",
+  "violentPer1k": 0.21,
+  "propertyPer1k": 6.96,
+  "year": 2023
+ },
+ "3404129820": {
+  "name": "Hardwick township",
+  "county": "Warren",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3404130090": {
+  "name": "Harmony township",
+  "county": "Warren",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3404133060": {
+  "name": "Hope township",
+  "county": "Warren",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3404133930": {
+  "name": "Independence township",
+  "county": "Warren",
+  "violentPer1k": 0.19,
+  "propertyPer1k": 1.11,
+  "year": 2023
+ },
+ "3404137320": {
+  "name": "Knowlton township",
+  "county": "Warren",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3404140110": {
+  "name": "Liberty township",
+  "county": "Warren",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ },
+ "3404141490": {
+  "name": "Lopatcong township",
+  "county": "Warren",
+  "violentPer1k": 0.7,
+  "propertyPer1k": 8.18,
+  "year": 2023
+ },
+ "3404143320": {
+  "name": "Mansfield township",
+  "county": "Warren",
+  "violentPer1k": 0.0,
+  "propertyPer1k": 13.73,
+  "year": 2023
+ },
+ "3404155530": {
+  "name": "Oxford township",
+  "county": "Warren",
+  "violentPer1k": 0.41,
+  "propertyPer1k": 4.96,
+  "year": 2023
+ },
+ "3404158350": {
+  "name": "Phillipsburg town",
+  "county": "Warren",
+  "violentPer1k": 3.03,
+  "propertyPer1k": 17.43,
+  "year": 2023
+ },
+ "3404159820": {
+  "name": "Pohatcong township",
+  "county": "Warren",
+  "violentPer1k": 0.63,
+  "propertyPer1k": 45.9,
+  "year": 2023
+ },
+ "3404177270": {
+  "name": "Washington borough",
+  "county": "Warren",
+  "violentPer1k": 0.31,
+  "propertyPer1k": 5.73,
+  "year": 2023
+ },
+ "3404177300": {
+  "name": "Washington township",
+  "county": "Warren",
+  "violentPer1k": 0.32,
+  "propertyPer1k": 8.99,
+  "year": 2023
+ },
+ "3404180570": {
+  "name": "White township",
+  "county": "Warren",
+  "violentPer1k": null,
+  "propertyPer1k": null,
+  "year": 2023
+ }
+}

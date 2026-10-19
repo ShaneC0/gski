@@ -1,0 +1,138 @@
+<title>Apartment Finder Intake</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: single column intake form, sections as floor-plan "rooms" with a blueprint-line border */
+:root {
+  --bg: #f3f5f7; --paper: #ffffff; --ink: #18232e; --muted: #5a6875;
+  --line: #c9d3dc; --accent: #2f6f5e; --accent-soft: #e2efe9;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11171c; --paper: #182128; --ink: #e4eaee; --muted: #93a2ae;
+  --line: #2d3a44; --accent: #7cc4ad; --accent-soft: #1d332c; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11171c; --paper: #182128; --ink: #e4eaee; --muted: #93a2ae;
+  --line: #2d3a44; --accent: #7cc4ad; --accent-soft: #1d332c; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 16px/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 32px 64px }
+main { max-width: 720px; margin: 0 auto; display: grid; gap: 20px }
+h1 { font: 800 clamp(28px, 6vw, 40px)/1.1 var(--display); margin: 0; text-wrap: balance }
+.lede { color: var(--muted); margin: 0; max-width: 62ch }
+fieldset { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 20px; margin: 0; display: grid; gap: 22px; min-width: 0 }
+legend { font: 600 13px var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); padding: 0 6px }
+.q { display: grid; gap: 8px; min-width: 0 }
+.q > label, .q > .qt { font-weight: 700 }
+.hint { color: var(--muted); font-size: 14px; font-weight: 400 }
+input[type=text], textarea { font: inherit; color: inherit; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 9px 11px; width: 100%; box-sizing: border-box }
+textarea { min-height: 84px; resize: vertical }
+.opts { display: flex; flex-wrap: wrap; gap: 8px }
+.opts label { display: flex; align-items: center; gap: 7px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; font-size: 15px }
+.opts label:has(input:checked) { background: var(--accent-soft); border-color: var(--accent) }
+.opts input { accent-color: var(--accent); margin: 0 }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center }
+button { font: 700 16px var(--body); background: var(--accent); color: var(--paper); border: 0; border-radius: 4px; padding: 12px 20px; cursor: pointer }
+button.ghost { background: transparent; color: var(--muted); border: 1px solid var(--line) }
+#status { color: var(--muted); font-size: 14px }
+#out { font: 13px/1.5 ui-monospace, monospace; min-height: 200px }
+</style>
+
+<main>
+  <header style="display:grid;gap:8px">
+    <h1>Apartment Finder Intake</h1>
+    <p class="lede">Answers shape a search tool built around her. Skip anything you don't know. When done, hit <b>Copy answers</b> and paste them back into Claude Code. Your draft saves in this browser as you type.</p>
+  </header>
+  <form id="f"></form>
+  <div class="bar">
+    <button type="button" id="copy">Copy answers</button>
+    <button type="button" class="ghost" id="clear">Clear form</button>
+    <span id="status" role="status"></span>
+  </div>
+  <textarea id="out" readonly hidden aria-label="Answers as text"></textarea>
+</main>
+
+<script>
+// [section, [[id, type, question, hint/options]]]  types: t=text, a=textarea, r=radio, c=checkboxes
+const SECTIONS = [
+  ["The search", [
+    ["where", "t", "City and neighborhoods she's targeting", "e.g. Chicago — Logan Square, Avondale"],
+    ["avoid", "t", "Areas to avoid", ""],
+    ["movein", "t", "Target move-in date (and how flexible)", "e.g. Dec 1, ±2 weeks"],
+    ["budget", "t", "Monthly rent range", "e.g. $1,400–$1,800, hard max $1,900"],
+    ["utils", "r", "Does that budget include utilities?", ["Rent only", "Rent + utilities", "Not sure"]],
+    ["beds", "c", "Size", ["Studio", "1 bed", "2 bed", "3+ bed", "Room in shared place"]],
+    ["who", "r", "Who's living there?", ["Just her", "Her + roommate(s)", "Her + me", "Undecided"]],
+    ["lease", "c", "Lease length", ["Month-to-month", "6 months", "12 months", "Longer is fine"]],
+  ]],
+  ["What the place needs", [
+    ["must", "c", "Must-haves", ["In-unit laundry", "Laundry in building", "Dishwasher", "Central AC", "Parking", "Pet friendly", "Elevator", "Outdoor space", "Natural light", "Quiet", "Ground floor", "Not ground floor", "Gym", "Doorman / package room", "Good cell signal"]],
+    ["nice", "a", "Nice-to-haves (things that should rank a place higher)", ""],
+    ["deal", "a", "Dealbreakers", "e.g. carpet, broker fee, basement unit, no natural light"],
+    ["pets", "t", "Pets (type, size, how many)", ""],
+    ["commute", "a", "Places she needs to get to often, and max travel time", "e.g. work at 123 Main St, 30 min by train; gym; my place"],
+    ["mode", "c", "How she gets around", ["Walk", "Bike", "Transit", "Car", "Rideshare"]],
+  ]],
+  ["Why it's been hard", [
+    ["pain", "c", "What's been making it hard?", ["Nothing in budget", "Places go too fast", "Too many sites to check", "Listings are scams / fake", "Landlords don't reply", "Hard to compare options", "Losing track of what she's applied to", "Credit / income requirements", "Can't tour in person", "Decision fatigue"]],
+    ["painmore", "a", "Tell the story. What happened in recent attempts?", ""],
+    ["sites", "c", "Where she's been looking", ["Zillow", "Apartments.com", "Craigslist", "Facebook Marketplace / groups", "StreetEasy", "Padmapper / Zumper", "HotPads", "Realtor / broker", "Walking around for signs"]],
+    ["sitesother", "t", "Other sources", ""],
+    ["apps", "t", "How many places has she applied to or toured so far?", ""],
+  ]],
+  ["What the tool should do", [
+    ["features", "c", "Pick everything that would help", ["Pull listings from several sites into one place", "Alert her the moment a match appears", "Score and rank listings against her criteria", "Calculate commute times", "Flag likely scams", "Track listings: saved, contacted, toured, applied", "Draft messages to landlords", "Side-by-side comparison", "Tour checklist / notes / photos", "Organize application documents", "Neighborhood info (safety, noise, grocery)", "Price check vs. similar listings"]],
+    ["top", "a", "If it only did ONE thing well, what should it be?", ""],
+    ["user", "r", "Who uses it day to day?", ["Her", "Me", "Both of us"]],
+    ["device", "r", "Mostly on", ["Phone", "Laptop", "Both"]],
+    ["notify", "c", "How should it reach her?", ["Text / SMS", "Email", "Push notification", "Shared page she checks", "No notifications"]],
+    ["tech", "r", "How comfortable is she with tech?", ["Very", "Fine with apps", "Keep it dead simple"]],
+  ]],
+  ["Build constraints", [
+    ["deadline", "t", "When does it need to be useful by?", ""],
+    ["run", "r", "Where should it run?", ["Hosted web page / app", "Script on my machine", "Scheduled Claude agent", "No preference"]],
+    ["spend", "r", "Monthly spend OK for APIs / hosting", ["$0", "Under $10", "Under $50", "Whatever it takes"]],
+    ["scrape", "r", "OK with scraping listing sites (may break / violate ToS)?", ["Yes", "Only official APIs / feeds", "Not sure, advise me"]],
+    ["stack", "t", "Preferred language / stack, if any", "e.g. Python backend, I'm learning React"],
+    ["extra", "a", "Anything else I should know", ""],
+  ]],
+];
+
+const f = document.getElementById("f");
+f.innerHTML = SECTIONS.map(([title, qs]) => `<fieldset><legend>${title}</legend>${qs.map(([id, type, q, x]) => {
+  if (type === "t") return `<div class="q"><label for="${id}">${q}</label><input type="text" id="${id}" name="${id}" placeholder="${x}"></div>`;
+  if (type === "a") return `<div class="q"><label for="${id}">${q}</label><textarea id="${id}" name="${id}" placeholder="${x}"></textarea></div>`;
+  const kind = type === "r" ? "radio" : "checkbox";
+  return `<div class="q" role="group" aria-labelledby="${id}-l"><span class="qt" id="${id}-l">${q}</span><div class="opts">${x.map((o, i) =>
+    `<label><input type="${kind}" id="${id}-${i}" name="${id}" value="${o}">${o}</label>`).join("")}</div></div>`;
+}).join("")}</fieldset>`).join("");
+f.addEventListener("submit", e => e.preventDefault());
+
+const KEY = "apt-intake";
+const read = () => { const d = {}; for (const [k, v] of new FormData(f)) if (v.trim()) (d[k] ??= []).push(v.trim()); return d; };
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(read())); } catch {} };
+try {
+  const d = JSON.parse(localStorage.getItem(KEY) || "{}");
+  for (const el of f.elements) if (d[el.name]) el.type === "radio" || el.type === "checkbox" ? el.checked = d[el.name].includes(el.value) : el.value = d[el.name][0];
+} catch {}
+f.addEventListener("input", save);
+
+function toText() {
+  const d = read();
+  return "# Apartment finder intake\n" + SECTIONS.map(([title, qs]) =>
+    `\n## ${title}\n` + qs.filter(([id]) => d[id]).map(([id, , q]) => `- **${q}:** ${d[id].join(", ")}`).join("\n")).join("\n");
+}
+
+const status = document.getElementById("status"), out = document.getElementById("out");
+document.getElementById("copy").onclick = async () => {
+  const text = toText();
+  try { await navigator.clipboard.writeText(text); status.textContent = "Copied. Paste it into Claude Code."; out.hidden = true; }
+  catch { out.value = text; out.hidden = false; out.focus(); out.select(); status.textContent = "Copy blocked. Text is selected below, press Ctrl+C."; }
+};
+const clearBtn = document.getElementById("clear");
+clearBtn.onclick = () => {
+  if (clearBtn.dataset.armed) { f.reset(); save(); status.textContent = "Cleared."; clearBtn.textContent = "Clear form"; delete clearBtn.dataset.armed; return; }
+  clearBtn.dataset.armed = 1; clearBtn.textContent = "Click again to clear";
+};
+</script>
