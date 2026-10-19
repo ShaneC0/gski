@@ -60,9 +60,23 @@ details { font-size: 13px; color: var(--muted) }
 .top5, .top5 * { min-width: 0 }
 .top5 h2 { display: flex; justify-content: space-between; align-items: baseline }
 .top5 ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px }
-.top5 li a { display: flex; gap: 10px; align-items: baseline; color: var(--ink); text-decoration: none; font-size: 14px }
 .top5 li b { font: 700 18px var(--display); color: var(--accent); min-width: 28px; font-variant-numeric: tabular-nums }
 .top5 li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+dialog.sheet { padding: 0; width: 100%; max-width: 640px; height: 100%; max-height: 100%; margin: 0 auto; border: 0; border-radius: 0; overflow-y: auto; overscroll-behavior: contain }
+body:has(dialog[open]) { overflow: hidden }
+.sh-top { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  padding: max(10px, env(safe-area-inset-top)) 14px 10px; background: var(--card); border-bottom: 1px solid var(--line) }
+.sh-top button { font: 700 15px var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; cursor: pointer }
+.photos { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; background: var(--line) }
+.photos img { flex: 0 0 100%; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; scroll-snap-align: start }
+.sh-body { padding: 14px 14px max(28px, env(safe-area-inset-bottom)); display: grid; gap: 10px; min-width: 0 }
+.sh-body .title { white-space: normal; font-size: 16px; color: var(--ink); font-weight: 600 }
+.desc { white-space: pre-line; font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; border-top: 1px solid var(--line); padding-top: 10px }
+.chips { display: flex; flex-wrap: wrap; gap: 4px }
+.actions .go { background: var(--accent); color: var(--card); border-color: var(--accent) }
+.actions a.ghost { background: var(--bg); color: var(--ink); border-color: var(--line) }
+.card { cursor: pointer }
+.top5 li button { all: unset; display: flex; gap: 10px; align-items: baseline; font-size: 14px; cursor: pointer; width: 100% }
 .panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px }
 .panel h2 { font: 700 18px var(--display); margin: 0 }
 .panel p { margin: 0; font-size: 14px; color: var(--muted) }
@@ -119,6 +133,7 @@ dialog textarea { min-height: 200px; resize: vertical; margin-block: 10px }
     <p>Pet rules and income requirements are read from each listing's text, so "Pets: ask" means the listing doesn't say. New Craigslist and Zumper/PadMapper apartments under $1,700, refreshed every few hours, within about 40 minutes' drive of Morristown. Newark, Irvington and Elizabeth are left out. The score (0–100) is price 30%, drive to Morristown 30%, the town's violent-crime rate 20% (NJ State Police, 2023, per 1,000 residents; the state average is about 2), cats allowed 10% and easy terms 10% (private landlord, no strict credit or income rule), minus 15 for each warning (5 for "unusually cheap" or "no photos"). The bars on each card show each part. Today's top 5 are the best new places from the last day with no warnings, skipping ones you've already sorted. Utilities are estimated at $150 a month. Warnings are guesses: never send money before seeing a place in person and meeting the landlord.</p>
   </details>
 </main>
+<dialog id="sheet" class="sheet" aria-label="Listing details"></dialog>
 <dialog id="msg">
   <b>Message to the landlord</b>
   <textarea id="msg-text" aria-label="Message"></textarea>
@@ -183,12 +198,18 @@ ${n}`;
 }
 
 function card(l) {
-  const s = status[l.id] || "new", all = l.price + UTIL;
-  const opts = TABS.map(([k, n]) => `<option value="${k}"${k === s ? " selected" : ""}>${n}</option>`).join("");
   return `<article class="card" id="l${l.id}">
     ${l.img ? `<img src="${esc(l.img)}" alt="" loading="lazy">` : `<div class="noimg"></div>`}
-    <div class="body">
-      <div class="top"><span class="price">$${l.price.toLocaleString()}</span>
+    <div class="body">${info(l)}
+      <div class="actions"><button class="go" data-open="${l.id}">Details</button>${actions(l)}</div>
+    </div>
+  </article>`;
+}
+
+// listing facts shared by the card and the detail sheet; full = sheet, with numbers on the score bars
+function info(l, full) {
+  const all = l.price + UTIL;
+  return `<div class="top"><span class="price">$${l.price.toLocaleString()}</span>
         <span class="all${all > BUDGET ? " over" : ""}">≈ $${all.toLocaleString()} w/ utilities</span></div>
       <div class="title">${esc(l.title)}</div>
       <div class="facts">
@@ -199,18 +220,43 @@ function card(l) {
       <div class="facts">${pets(l.cats)}${safety(l.violent)}${l.landlord === "private" ? `<span class="pill safe">Private landlord</span>` : l.landlord === "complex" ? `<span class="pill mid">Big complex</span>` : ""}</div>
       ${reqs(l)}
       <div class="parts" title="Price 30%, drive 30%, safety 20%, cats 10%, easy terms 10%">${PARTS.map(([k, n]) =>
-        `<span><i style="--v:${l.parts?.[k] ?? 0}%"></i>${n}</span>`).join("")}</div>
+        `<span><i style="--v:${l.parts?.[k] ?? 0}%"></i>${n}${full ? ` ${l.parts?.[k] ?? "?"}` : ""}</span>`).join("")}</div>
       <div class="facts"><span class="score">${l.score}/100</span><span class="sub">${l.source || "Craigslist"} · ${ago(l.posted)}</span></div>
-      ${l.scam.length ? `<div class="warn">⚠ ${l.scam.map(esc).join(" · ")}</div>` : ""}
-      <div class="actions">
-        <a href="${esc(l.url)}" target="_blank" rel="noopener">Open</a>
-        <button data-msg="${l.id}">Message</button>
-        ${s === "new" ? `<button data-id="${l.id}" data-to="saved">Save</button><button data-id="${l.id}" data-to="nope">Nope</button>`
-          : `<select data-id="${l.id}" aria-label="Status">${opts}</select>`}
-      </div>
-    </div>
-  </article>`;
+      ${l.scam.length ? `<div class="warn">⚠ ${l.scam.map(esc).join(" · ")}</div>` : ""}`;
 }
+
+function actions(l) {
+  const s = status[l.id] || "new";
+  const opts = TABS.map(([k, n]) => `<option value="${k}"${k === s ? " selected" : ""}>${n}</option>`).join("");
+  return `<button data-msg="${l.id}">Message</button>
+    ${s === "new" ? `<button data-id="${l.id}" data-to="saved">Save</button><button data-id="${l.id}" data-to="nope">Nope</button>`
+      : `<select data-id="${l.id}" aria-label="Status">${opts}</select>`}`;
+}
+
+// full-screen detail view so she can read the whole post without leaving the app
+let open = null;
+function sheet(l) {
+  const photos = l.photos?.length ? l.photos : l.img ? [l.img] : [];
+  const map = `https://www.google.com/maps/search/?api=1&query=${l.lat},${l.lon}`;
+  return `<header class="sh-top"><button id="sh-close">✕ Close</button>
+      <span class="sub">${photos.length > 1 ? `${photos.length} photos, swipe →` : ""}</span></header>
+    ${photos.length ? `<div class="photos">${photos.map(p => `<img src="${esc(p)}" alt="" loading="lazy">`).join("")}</div>` : ""}
+    <div class="sh-body">${info(l, true)}
+      ${l.amen?.length ? `<div class="chips">${l.amen.map(a => `<span class="pill mid">${esc(a)}</span>`).join("")}</div>` : ""}
+      <div class="desc">${l.desc ? esc(l.desc) : `<span class="sub">The full description hasn't been saved for this listing yet. Tap "Open listing" to read it.</span>`}</div>
+      <div class="actions"><a href="${esc(l.url)}" target="_blank" rel="noopener">Open listing</a>
+        <a class="ghost" href="${map}" target="_blank" rel="noopener">Map</a>${actions(l)}</div>
+    </div>`;
+}
+function openSheet(id) {
+  open = listings.find(l => l.id === id);
+  $("sheet").innerHTML = sheet(open);
+  if (!$("sheet").open) { $("sheet").showModal(); history.pushState({ sheet: 1 }, ""); }
+  $("sheet").scrollTop = 0;
+}
+// Back (swipe or button) closes the sheet instead of leaving the app
+addEventListener("popstate", () => $("sheet").open && $("sheet").close());
+$("sheet").addEventListener("cancel", e => { e.preventDefault(); history.back(); });
 
 function render() {
   const counts = {};
@@ -232,14 +278,23 @@ function render() {
     .sort((a, b) => b.score - a.score).filter(l => !seen.has(l.title) && seen.add(l.title)).slice(0, 5);
   $("top5").hidden = ui.tab !== "new" || !top.length;
   $("top5").innerHTML = `<h2>Today's top 5 <span class="sub">new in the last 24h</span></h2><ol>${top.map(l =>
-    `<li><a href="#l${l.id}"><b>${l.score}</b><span>$${l.price.toLocaleString()} · ${esc(town(l.town))} · ${l.driveM}m · ${esc(l.title)}</span></a></li>`).join("")}</ol>`;
+    `<li><button data-open="${l.id}"><b>${l.score}</b><span>$${l.price.toLocaleString()} · ${esc(town(l.town))} · ${l.driveM}m · ${esc(l.title)}</span></button></li>`).join("")}</ol>`;
   $("list").innerHTML = shown.map(card).join("") || `<p class="empty">Nothing here yet.</p>`;
   store.set("ui", ui);
 }
 
-function setStatus(id, to) { status[id] = to; store.set("status", status); render(); }
+function setStatus(id, to) {
+  status[id] = to; store.set("status", status); render();
+  if ($("sheet").open) { const y = $("sheet").scrollTop; $("sheet").innerHTML = sheet(open); $("sheet").scrollTop = y; }
+}
 document.addEventListener("click", e => {
-  const b = e.target.closest("button"); if (!b) return;
+  const b = e.target.closest("button");
+  // tapping anywhere on a card that isn't a control opens its details
+  const c = !e.target.closest("a, button, select") && e.target.closest(".card");
+  if (c) return openSheet(c.id.slice(1));
+  if (!b) return;
+  if (b.dataset.open) return openSheet(b.dataset.open);
+  if (b.id === "sh-close") return history.back();
   if (b.dataset.tab) ui.tab = b.dataset.tab;
   else if (b.dataset.sort) ui.sort = b.dataset.sort;
   else if (b.dataset.to) return setStatus(b.dataset.id, b.dataset.to);

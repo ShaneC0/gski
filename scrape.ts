@@ -20,6 +20,7 @@ type Listing = {
   // from the listing's own page
   detailed?: boolean; cats?: "yes" | "no" | null; income?: string | null; incomeMin?: number | null;
   credit?: number | null; landlord?: "private" | "complex" | null; textScam?: boolean;
+  desc?: string; photos?: string[]; amen?: string[];
 };
 
 const UA = { "User-Agent": "Mozilla/5.0 (apartment-search personal tool)" };
@@ -137,22 +138,33 @@ function landlordKind(text: string): "private" | "complex" | null {
 
 const SCAM_TEXT = /\b(wire|western union|money ?gram|gift cards?)\b|out of (the )?(country|state)|keys? (will be )?(mailed|shipped|sent)|deployed|missionary|god ?fearing|can(no|')t show/i;
 
+const ENTITIES: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', "#39": "'", nbsp: " " };
+// HTML to text, keeping <br> line breaks so the description reads like the original post
+const strip = (s: string) => s.replace(/\s+/g, " ").replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]*>/g, " ").replace(/&(amp|lt|gt|quot|#39|nbsp);/g, (_, e) => ENTITIES[e])
+  .replace(/[ \t]+/g, " ").replace(/ *\n */g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+
 async function details(l: Listing) {
-  let text = "", cats: Listing["cats"] = null;
+  let text = "", cats: Listing["cats"] = null, photos: string[] = [], amen: string[] = [];
   if (l.source === "Zumper") {
     const d = await (await fetch(`https://www.zumper.com/api/t/1/listings/${l.id.slice(2)}`, { headers: UA })).json();
-    text = d.description ?? "";
+    text = (d.description ?? "").trim();
     // pets: null = not stated, [] = none allowed, 1 = cats (2/3 = dogs)
     cats = d.pets == null ? null : d.pets.includes(1) ? "yes" : "no";
+    photos = (d.media ?? []).filter((m: any) => m.media_type === 1).map((m: any) => `https://img.zumpercdn.com/${m.media_id}/1280x960`);
+    amen = d.amenity_tags ?? [];
   } else {
     const h = await (await fetch(l.url, { headers: UA })).text();
-    const strip = (s: string) => s.replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
-    text = strip(h.match(/<section id="postingbody">([\s\S]*?)<\/section>/)?.[1] ?? "").replace(/^QR Code Link to This Post/, "");
+    if (/<title>blocked<\/title>/.test(h)) throw new Error("craigslist blocked"); // retry next run instead of saving an empty page
+    text = strip(h.match(/<section id="postingbody">([\s\S]*?)<\/section>/)?.[1] ?? "").replace(/^QR Code Link to This Post\s*/, "");
     if (/class="attr pets_cat"/.test(h)) cats = "yes";
+    // every size variant of every photo appears somewhere in the page; dedupe by image id
+    photos = [...new Set([...h.matchAll(/images\.craigslist\.org\/(\w+)_\d+x\d+\.jpg/g)].map(m => m[1]))]
+      .map(id => `https://images.craigslist.org/${id}_600x450.jpg`);
   }
   if (/\bno (pets|cats|animals)\b|pets? (are )?not (allowed|permitted)/i.test(text)) cats = "no";
   else if (!cats && /\bcats? (ok|allowed|welcome|friendly)|pet[- ]friendly|pets (ok|allowed|welcome)/i.test(text)) cats = "yes";
-  Object.assign(l, requirements(text, l.price), { cats, landlord: landlordKind(text), textScam: SCAM_TEXT.test(text), detailed: true });
+  Object.assign(l, requirements(text, l.price), { cats, landlord: landlordKind(text), textScam: SCAM_TEXT.test(text), detailed: true,
+    desc: text.slice(0, 4000), photos: photos.slice(0, 20), amen });
 }
 
 const median = (xs: number[]) => xs.sort((a, b) => a - b)[Math.floor(xs.length / 2)];
@@ -221,7 +233,7 @@ async function main() {
   const all = [...old, ...keep]
     .filter(l => Date.parse(l.posted) > cutoff);
   // 4 at a time to stay polite; old listings without details get backfilled
-  const todo = all.filter(l => !l.detailed);
+  const todo = all.filter(l => !l.detailed || !l.photos); // !photos = saved before descriptions/photos were kept
   for (let i = 0; i < todo.length; i += 4)
     await Promise.all(todo.slice(i, i + 4).map(l => details(l).catch(e => console.warn("details", l.id, e.message))));
   const rejected = [...prev.rejected, ...added.filter(l => l.town !== undefined && !all.includes(l)).map(l => l.id)].slice(-5000);
