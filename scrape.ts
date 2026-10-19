@@ -16,7 +16,7 @@ type Listing = {
   id: string; source: string; url: string; title: string; price: number; beds: number | null; sqft: number | null;
   lat: number; lon: number; img: string | null; posted: string; firstSeen: string;
   town?: string; geoid?: string; driveM?: number; driveC?: number; violent?: number | null;
-  room?: boolean; scam?: string[]; score?: number;
+  room?: boolean; scam?: string[]; score?: number; parts?: Record<string, number>;
   // from the listing's own page
   detailed?: boolean; cats?: "yes" | "no" | null; income?: string | null; incomeMin?: number | null;
   credit?: number | null; landlord?: "private" | "complex" | null; textScam?: boolean;
@@ -163,19 +163,35 @@ function scamFlags(l: Listing, all: Listing[]): string[] {
   if (peers.length >= 5 && l.price < 0.65 * median(peers)) flags.push("Price far below similar listings");
   // whole places here rarely go under ~$1,150 for a 1BR (+$500 per extra bedroom); far cheaper is the classic bait
   if (!l.room && l.price < 1150 + 500 * Math.max(0, (l.beds ?? 1) - 1)) flags.push("Unusually cheap for its size");
-  if (all.some(o => o.id !== l.id && o.title === l.title && o.price !== l.price)) flags.push("Same ad posted at different prices");
+  // Zumper titles are building names, so units in one complex legitimately share a title
+  if (l.source !== "Zumper" && all.some(o => o.id !== l.id && o.source !== "Zumper" && o.title === l.title && o.price !== l.price))
+    flags.push("Same ad posted at different prices");
   if (!l.img) flags.push("No photos");
   if (l.textScam || SCAM_TEXT.test(l.title)) flags.push("Scam-style wording (wire money, owner away, keys mailed)");
   return flags;
 }
 
-// 0-100, higher is better. ponytail: hand-tuned weights, adjust after she's used it a week
-function score(l: Listing): number {
-  const price = 1 - (l.price - MIN_PRICE) / (MAX_PRICE - MIN_PRICE);
-  const commute = 1 - Math.min(l.driveM ?? 60, 60) / 60;
-  const safety = l.violent == null ? 0.5 : 1 - Math.min(l.violent, 8) / 8;
-  const penalty = (l.scam?.length ?? 0) * 0.15;
-  return Math.max(0, Math.round(100 * (0.35 * price + 0.35 * commute + 0.3 * safety - penalty)));
+// Each part is 0-1, higher is better. Ranges are the realistic spread of kept listings so scores don't bunch up.
+// ponytail: hand-tuned weights, adjust after she's used it a week
+export const WEIGHTS = { price: 0.3, drive: 0.3, safety: 0.2, cats: 0.1, terms: 0.1 };
+const clamp = (x: number) => Math.min(1, Math.max(0, x));
+export function score(l: Listing) {
+  let terms = l.landlord === "private" ? 1 : l.landlord === "complex" ? 0.25 : 0.5; // how flexible on income/credit
+  if (l.credit && l.credit >= 650) terms -= 0.25;
+  if (l.incomeMin) terms -= 0.15;
+  const parts = {
+    price: clamp((MAX_PRICE - l.price) / 800), // $900 or less = full marks
+    drive: clamp(1 - (l.driveM ?? MAX_DRIVE_MIN) / MAX_DRIVE_MIN),
+    safety: l.violent == null ? 0.5 : clamp(1 - l.violent / 4), // state average is ~2
+    cats: l.cats === "yes" ? 1 : l.cats === "no" ? 0 : 0.5,
+    terms: clamp(terms),
+  };
+  const total = Object.entries(parts).reduce((s, [k, v]) => s + WEIGHTS[k as keyof typeof WEIGHTS] * v, 0);
+  // cheapness and missing photos are weak signals on their own (and price already rewards cheap), so they cost less
+  const soft = ["Unusually cheap for its size", "No photos"];
+  const penalty = (l.scam ?? []).reduce((p, f) => p + (soft.includes(f) ? 0.05 : 0.15), 0);
+  const pct = Object.fromEntries(Object.entries(parts).map(([k, v]) => [k, Math.round(100 * v)]));
+  return { score: Math.max(0, Math.round(100 * (total - penalty))), parts: pct };
 }
 
 async function main() {
@@ -214,7 +230,7 @@ async function main() {
     // 4+ bedrooms under $1,700 around here is a room in a shared house
     l.room = (l.beds ?? 0) >= 4 || /\b(room|shared|roommate|housemate)\b|in (a |an )?\d ?b(r|ed)/i.test(l.title);
     l.scam = scamFlags(l, all);
-    l.score = score(l);
+    Object.assign(l, score(l));
   }
   all.sort((a, b) => b.score! - a.score!);
   writeFileSync(OUT, JSON.stringify({ updated: new Date().toISOString(), listings: all, rejected }));

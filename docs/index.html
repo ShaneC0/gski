@@ -53,6 +53,16 @@ label.toggle { display: flex; gap: 8px; align-items: center; font-size: 14px; co
 details { font-size: 13px; color: var(--muted) }
 .req { font-size: 13px }
 .req.over { color: var(--warn); font-weight: 700 }
+.parts { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; font-size: 11px; color: var(--muted) }
+.parts span { display: grid; gap: 2px }
+.parts i { height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--accent) var(--v), var(--line) var(--v)) }
+.score { font: 700 13px var(--display); color: var(--accent) }
+.top5, .top5 * { min-width: 0 }
+.top5 h2 { display: flex; justify-content: space-between; align-items: baseline }
+.top5 ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px }
+.top5 li a { display: flex; gap: 10px; align-items: baseline; color: var(--ink); text-decoration: none; font-size: 14px }
+.top5 li b { font: 700 18px var(--display); color: var(--accent); min-width: 28px; font-variant-numeric: tabular-nums }
+.top5 li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
 .panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px }
 .panel h2 { font: 700 18px var(--display); margin: 0 }
 .panel p { margin: 0; font-size: 14px; color: var(--muted) }
@@ -75,6 +85,7 @@ dialog textarea { min-height: 200px; resize: vertical; margin-block: 10px }
   </header>
   <nav class="tabs" id="tabs" aria-label="Lists"></nav>
   <div id="browse" style="display:grid;gap:14px">
+    <section class="panel top5" id="top5" hidden></section>
     <div class="sorts" id="sorts" aria-label="Sort"></div>
     <label class="toggle"><input type="checkbox" id="hideNoCats"> Hide places that don't allow cats</label>
     <label class="toggle"><input type="checkbox" id="hideWarn"> Hide listings with scam warnings</label>
@@ -105,7 +116,7 @@ dialog textarea { min-height: 200px; resize: vertical; margin-block: 10px }
   </div>
   <details>
     <summary>How places are picked and scored</summary>
-    <p>Pet rules and income requirements are read from each listing's text, so "Pets: ask" means the listing doesn't say. New Craigslist and Zumper/PadMapper apartments under $1,700, refreshed every few hours, within about 40 minutes' drive of Morristown. Newark, Irvington and Elizabeth are left out. The score (0–100) mixes price, drive to Morristown and the town's violent-crime rate (NJ State Police, 2023, per 1,000 residents; the state average is about 2). Utilities are estimated at $150 a month. Warnings are guesses: never send money before seeing a place in person and meeting the landlord.</p>
+    <p>Pet rules and income requirements are read from each listing's text, so "Pets: ask" means the listing doesn't say. New Craigslist and Zumper/PadMapper apartments under $1,700, refreshed every few hours, within about 40 minutes' drive of Morristown. Newark, Irvington and Elizabeth are left out. The score (0–100) is price 30%, drive to Morristown 30%, the town's violent-crime rate 20% (NJ State Police, 2023, per 1,000 residents; the state average is about 2), cats allowed 10% and easy terms 10% (private landlord, no strict credit or income rule), minus 15 for each warning (5 for "unusually cheap" or "no photos"). The bars on each card show each part. Today's top 5 are the best new places from the last day with no warnings, skipping ones you've already sorted. Utilities are estimated at $150 a month. Warnings are guesses: never send money before seeing a place in person and meeting the landlord.</p>
   </details>
 </main>
 <dialog id="msg">
@@ -114,6 +125,7 @@ dialog textarea { min-height: 200px; resize: vertical; margin-block: 10px }
   <div class="actions"><button class="primary" id="msg-copy">Copy</button><button id="msg-close">Close</button><span class="sub" id="msg-status"></span></div>
 </dialog>
 <script>
+const PARTS = [["price", "Price"], ["drive", "Drive"], ["safety", "Safety"], ["cats", "Cats"], ["terms", "Terms"]];
 const UTIL = 150, BUDGET = 1700; // ponytail: flat utility estimate
 const TABS = [["new", "New"], ["saved", "Saved"], ["contacted", "Contacted"], ["toured", "Toured"], ["applied", "Applied"], ["nope", "Nope"]];
 const KIT = [
@@ -127,7 +139,7 @@ const KIT = [
   ["ins", "Renter's insurance quote", "Many places require it; about $15 a month"],
 ];
 const SORTS = { score: ["Best match", (a, b) => b.score - a.score], price: ["Cheapest", (a, b) => a.price - b.price],
-  drive: ["Closest", (a, b) => a.driveM - b.driveM], posted: ["Newest", (a, b) => b.posted.localeCompare(a.posted)] };
+  drive: ["Closest", (a, b) => a.driveM - b.driveM], safety: ["Safest", (a, b) => (a.violent ?? 9) - (b.violent ?? 9)], posted: ["Newest", (a, b) => b.posted.localeCompare(a.posted)] };
 
 const store = {
   get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } },
@@ -173,7 +185,7 @@ ${n}`;
 function card(l) {
   const s = status[l.id] || "new", all = l.price + UTIL;
   const opts = TABS.map(([k, n]) => `<option value="${k}"${k === s ? " selected" : ""}>${n}</option>`).join("");
-  return `<article class="card">
+  return `<article class="card" id="l${l.id}">
     ${l.img ? `<img src="${esc(l.img)}" alt="" loading="lazy">` : `<div class="noimg"></div>`}
     <div class="body">
       <div class="top"><span class="price">$${l.price.toLocaleString()}</span>
@@ -186,7 +198,9 @@ function card(l) {
       </div>
       <div class="facts">${pets(l.cats)}${safety(l.violent)}${l.landlord === "private" ? `<span class="pill safe">Private landlord</span>` : l.landlord === "complex" ? `<span class="pill mid">Big complex</span>` : ""}</div>
       ${reqs(l)}
-      <div class="facts"><span class="sub">score ${l.score} · ${l.source || "Craigslist"} · ${ago(l.posted)}</span></div>
+      <div class="parts" title="Price 30%, drive 30%, safety 20%, cats 10%, easy terms 10%">${PARTS.map(([k, n]) =>
+        `<span><i style="--v:${l.parts?.[k] ?? 0}%"></i>${n}</span>`).join("")}</div>
+      <div class="facts"><span class="score">${l.score}/100</span><span class="sub">${l.source || "Craigslist"} · ${ago(l.posted)}</span></div>
       ${l.scam.length ? `<div class="warn">⚠ ${l.scam.map(esc).join(" · ")}</div>` : ""}
       <div class="actions">
         <a href="${esc(l.url)}" target="_blank" rel="noopener">Open</a>
@@ -213,6 +227,12 @@ function render() {
   const shown = listings.filter(l => (status[l.id] || "new") === ui.tab && !(ui.hideWarn && l.scam.length) && !(ui.hideRooms && l.room)
     && !(ui.hideNoCats && l.cats === "no"))
     .sort(SORTS[ui.sort][1]);
+  const day = Date.now() - 864e5, seen = new Set();
+  const top = listings.filter(l => !status[l.id] && !l.scam.length && l.cats !== "no" && !(ui.hideRooms && l.room) && Date.parse(l.posted) > day)
+    .sort((a, b) => b.score - a.score).filter(l => !seen.has(l.title) && seen.add(l.title)).slice(0, 5);
+  $("top5").hidden = ui.tab !== "new" || !top.length;
+  $("top5").innerHTML = `<h2>Today's top 5 <span class="sub">new in the last 24h</span></h2><ol>${top.map(l =>
+    `<li><a href="#l${l.id}"><b>${l.score}</b><span>$${l.price.toLocaleString()} · ${esc(town(l.town))} · ${l.driveM}m · ${esc(l.title)}</span></a></li>`).join("")}</ol>`;
   $("list").innerHTML = shown.map(card).join("") || `<p class="empty">Nothing here yet.</p>`;
   store.set("ui", ui);
 }
