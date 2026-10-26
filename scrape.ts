@@ -216,10 +216,22 @@ async function main() {
   const fresh = new Map<string, Listing>();
   // one source failing (blocked, API change) shouldn't sink the run
   const sources = [...CENTERS.map(c => () => craigslist(c)), zumper];
+  let zumperOk = false;
   for (const src of sources) {
-    try { for (const l of await src()) fresh.set(l.id, l); }
+    try { for (const l of await src()) fresh.set(l.id, l); if (src === zumper) zumperOk = true; }
     catch (e) { console.warn("source failed:", (e as Error).message); }
   }
+  // drop listings taken down since we saved them. Zumper's search is complete, so missing = gone.
+  // ponytail: Craigslist search caps at 360 per center, so missing ones get a status check (410 = deleted/flagged)
+  const gone = new Set<string>();
+  const unseen = old.filter(l => !fresh.has(l.id));
+  for (let i = 0; i < unseen.length; i += 4)
+    await Promise.all(unseen.slice(i, i + 4).map(async l => {
+      if (l.id.startsWith("zu")) { if (zumperOk) gone.add(l.id); return; }
+      const s = (await fetch(l.url, { method: "HEAD", headers: UA }).catch(() => null))?.status;
+      if (s === 404 || s === 410) gone.add(l.id);
+    }));
+  console.log(`removed ${gone.size} taken-down listings`);
   const added = [...fresh.values()].filter(l => !known.has(l.id));
   console.log(`fetched ${fresh.size}, new ${added.length}`);
 
@@ -231,7 +243,7 @@ async function main() {
   const cutoff = Date.now() - MAX_AGE_DAYS * 864e5;
   const keep = inNJ.filter(l => l.driveM! <= MAX_DRIVE_MIN);
   const all = [...old, ...keep]
-    .filter(l => Date.parse(l.posted) > cutoff);
+    .filter(l => Date.parse(l.posted) > cutoff && !gone.has(l.id));
   // 4 at a time to stay polite; old listings without details get backfilled
   const todo = all.filter(l => !l.detailed || !l.photos); // !photos = saved before descriptions/photos were kept
   for (let i = 0; i < todo.length; i += 4)
